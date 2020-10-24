@@ -19,36 +19,36 @@ You must have <code> Python 3.8</code> and <code> Pip 20.2</code> installed on y
 
 #### 1. Clone the repository
 
-<code>
+```
 $ git clone https://github.com/Me-Adota/website
-</code>
+```
 
 #### 2. Access the repository directory
 
-<code>
+```
 $ cd website
-</code>
+```
 
 #### 3. You must activate the venv bin, it will be activated using
 
-<code>
+```
 $ virtualenv venv
-</code>
-<code>
+```
+```
 $ source venv/bin/activate
-</code>
+```
 
 #### 4. The requirements.txt file should list all Python libraries that your machine depend on, and they will be installed using
 
-<code>
+```
 $ pip install -r requirements.txt
-</code>
+```
 
 #### 5. Run
 
-<code>
+```
 $ python manage.py runserver
-</code>
+```
 
 
 It should be running on: http://127.0.0.1:8000
