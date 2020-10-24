@@ -29,17 +29,19 @@ $ git clone https://github.com/Me-Adota/website
 $ cd website
 </code>
 
-#### 3. The requirements.txt file should list all Python libraries that your machine depend on, and they will be installed using
-
-<code>
-$ pip install -r requirements.tx
-</code>
-
-#### 4. You must activate the venv bin, it will be activated using
+#### 3. You must activate the venv bin, it will be activated using
 
 <code>
 $ virtualenv venv
+</code>
+<code>
 $ source venv/bin/activate
+</code>
+
+#### 4. The requirements.txt file should list all Python libraries that your machine depend on, and they will be installed using
+
+<code>
+$ pip install -r requirements.txt
 </code>
 
 #### 5. Run
@@ -47,6 +49,7 @@ $ source venv/bin/activate
 <code>
 $ python manage.py runserver
 </code>
+
 
 It should be running on: http://127.0.0.1:8000
 
