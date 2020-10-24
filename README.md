@@ -35,7 +35,7 @@ $ cd website
 $ pip install -r requirements.tx
 </code>
 
-#### 4. You must activate the venv bin, they will be installed using
+#### 4. You must activate the venv bin, it will be activated using
 
 <code>
 $ virtualenv venv
