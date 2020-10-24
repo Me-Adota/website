@@ -53,6 +53,17 @@ $ python manage.py runserver
 
 It should be running on: http://127.0.0.1:8000
 
+#### 5. Login in django Adminnistration Area
+
+visit your admin page throught: http://localhost:8000/admin/
+
+```
+login: admin
+email: admin@gmail.com
+password: admin123 
+``` 
+
 #### License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details.
+

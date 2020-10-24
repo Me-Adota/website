@@ -2,4 +2,10 @@
 
 {% block content %}
     <p>Conteúdo da Home</p>
+
+    {% load socialaccount %}
+    <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook OAuth2</a>
+    <!-- <a href="/accounts/github/login/callback/" method="oauth2" %}">Github OAuth</a> This is a bug that will be solved in future ...(After i had sleep)-->
+    <hr>(OBS: After login the user back went back to this page, if want to change this go to setting.py and change 'LOGIN_REDIRECT_URL' Variable )
+    <!-- <br>(OBS2: Dont lose time fixing this right now, but first create user administration area) (; -->
 {% endblock content %}
