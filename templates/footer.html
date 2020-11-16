@@ -1,4 +1,61 @@
+{% load static %}
+
+{% block page_styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+{% endblock page_styles %}
+
 {% block footer %}
-    <hr>
-    <p>Footer</p>
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-4 py-5 text-center">
+                    <img class="footer-logo" src="{% static 'img/common/logo_semtexto.png' %}" alt="">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-4 text-center text-light">
+                    Nós somos um projeto open source que pode ser visitado no nosso github.
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-4 py-5 text-center">
+                    
+                    <a href="" class="pr-2">
+                        <button class="btn social-button twitter-button">
+                            <i class="fab fa-twitter"></i> 
+                        </button>
+                    </a>
+
+                    <a href="" class="pr-2">
+                        <button class="btn social-button facebook-button">
+                            <i class="fab fa-facebook-f"></i> 
+                        </button>
+                    </a>
+
+                    <a href="">
+                        <button class="btn social-button instagram-button">
+                            <i class="fab fa-instagram"></i> 
+                        </button>
+                    </a>
+                    
+
+                    <a href="">
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="after-footer py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <small>Desenvolvido pela Equipe Ancient Fiddle ©</small>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock footer %}
