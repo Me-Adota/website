@@ -1,4 +1,40 @@
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+{% endblock page_styles %}
+
 {% block navbar %}
-    <p>Navbar</p>
-    <hr>
+    <div class="top-navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center py-1">
+                    <i class="fab pr-2 fa-instagram-square"></i>
+                    <i class="fab pr-2 fa-facebook-square"></i>
+                    <i class="fab fa-twitter-square"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand py-2" href="#">
+                <img class="navbar-logo" src="{% static 'img/common/logo_rascunho.png' %}" alt="">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Sobre nós</a>
+                    <a class="nav-link" href="#">Como funciona</a>
+                    <a class="nav-link" href="#">Nossos dados</a>
+                    <a class="nav-link" href="#">Registrar</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 {% endblock navbar %}
