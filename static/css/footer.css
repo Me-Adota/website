@@ -8,10 +8,14 @@ footer {
 .after-footer small {
     color: rgba(255,255,255,.35);
 }
+.after-footer small a {
+    color: rgba(255,255,255,.35) !important;
+    text-decoration: underline !important;
+}
 
 .footer-logo {
     width: 100%;
-    max-width: 200px;
+    max-width: 80px;
 }
 
 footer button:active, footer button:focus {
@@ -44,4 +48,8 @@ footer a {
 }
 .instagram-button {
     background-color: #C13584;
+}
+
+.unb-icon {
+    max-width: 30px;
 }
