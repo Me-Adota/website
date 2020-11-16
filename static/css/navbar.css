@@ -1,0 +1,14 @@
+.top-navbar {
+    background-color: #00294f;
+    color: rgba(255,255,255,.7);
+}
+
+.navbar-logo {
+    width: 100%;
+    max-width: 150px;
+}
+
+.navbar {
+    background-color: white !important;
+    box-shadow: 2px 2px 10px rgba(0,0,0,.5);
+}
