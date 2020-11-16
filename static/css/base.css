@@ -1,0 +1,22 @@
+.btn-rounded {
+    border-radius: 50px;
+}
+.img-rounded {
+    border-radius: 50%;
+}
+
+.img-fit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hr-box {
+    margin: 0 auto;
+    max-width: 50px;
+}
+
+.hr-box hr {
+    border: 2px solid var(--secondary);
+    border-radius: 50px;
+}
