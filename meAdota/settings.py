@@ -24,12 +24,13 @@ SECRET_KEY = 'r#t=zrqyt*dwpc*p9jg#a3y-335q@pplmpff#fo7ot3y%-bz@v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'pets.apps.PetsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +47,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     # 'allauth.socialaccount.providers.google', commented out... Wating for google response
     # ... allauth providers end->
+
+    #our apps
+    'accounts',
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 SITE_ID = 2
 
@@ -137,8 +143,12 @@ WSGI_APPLICATION = 'meAdota.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'meadota',
+        'USER': 'meadota',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
