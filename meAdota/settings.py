@@ -45,12 +45,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # ... allauth providers begin->
-    'allauth.socialaccount.providers.baidu',
-    # 'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.facebook',
-    # 'allauth.socialaccount.providers.google', commented out... Wating for google response
-    # ... allauth providers end->
 ]
 
 SITE_ID = 2
@@ -113,7 +107,7 @@ LOGIN_REDIRECT_URL ='/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR / "templates")],
+        'DIRS': [str(BASE_DIR / "templates"), str(BASE_DIR / "templates/allauth")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
