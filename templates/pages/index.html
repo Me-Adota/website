@@ -7,6 +7,17 @@
 
 
 {% block content %}
+    <div id="loading-box">
+        <div class="container h-100 text-center">
+            <div class="row">
+                <div class="col-12 align-self-center">
+                    <img class="img-fluid loading-dog" src="{% static 'img/common/loading_1.gif' %}" alt="">
+                    <br>
+                    <img class="img-fluid loading-gif" src="{% static 'img/common/loading_2.gif' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <header>
         <div class="container">
@@ -17,9 +28,12 @@
                             Abra o seu coração e a sua casa.
                         </strong>
                     </h1>
+                    <br>
                     <p>
-                        Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet.
+                        No Brasil, <b><u><a href="https://anda.jusbrasil.com.br/noticias/100681698/brasil-tem-30-milhoes-de-animais-abandonados" target="_blank">mais de 30 milhões de animais</a></u></b> estão em situação vulnerável, alguns abrigados temporariamente em diversas ONGs espalhadas pelo país.
+                        É importante salvar essas vidas, compartilhando um lar, carinho e amor.
                     </p>
+                    <br>
                     <button class="btn btn-lg btn-light btn-rounded px-4">
                         Faça um amigo <i class="far pl-2 fa-heart"></i>
                     </button>
@@ -146,7 +160,7 @@
                         </div>
                         <br>
                         <h3>50</h3>
-                        <h3>Bla bla</h3>
+                        <h3>Animais adotados</h3>
                     </div>
                     <div class="col-3 text-center">
                         <div class="img-info p-4 mx-auto">
@@ -154,7 +168,7 @@
                         </div>
                         <br>
                         <h3>50</h3>
-                        <h3>Bla bla</h3>
+                        <h3>Animais buscando lar</h3>
                     </div>
                     <div class="col-3 text-center">
                         <div class="img-info p-4 mx-auto">
@@ -232,5 +246,42 @@
             </div>
         </section>
     </main>
+
+
+
+
+
+
+
+
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Acesse a sua conta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{% url 'account_login' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+            
+                <input id="id_login" name="login" placeholder="Username or e-mail" type="text" required />
+                <input id="id_password" name="password" placeholder="Password" type="password" required />
+            
+                <label for="id_remember">Remember Me:</label>
+                <input id="id_remember" name="remember" type="checkbox" />
+            
+                <button type="submit">Login</button>
+                <a href="{% url 'account_reset_password' %}">Forgot Password?</a>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock content %}
