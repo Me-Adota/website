@@ -1,0 +1,29 @@
+#loading-box {
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+#loading-box.loaded {
+    opacity: 0;
+}
+#loading-box.loaded.loaded2{
+    display: none;
+}
+
+#loading-box .row {
+    height: 100%;
+}
+
+#loading-box .loading-dog {
+    max-width: 230px;
+    margin-left: -20px;
+}
+#loading-box .loading-gif {
+    max-width: 100px;
+}

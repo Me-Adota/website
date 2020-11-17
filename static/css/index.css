@@ -6,6 +6,10 @@ header {
     min-height: 300px;
     color: white;
 }
+header a {
+    color: white !important;
+}
+
 
 #header_2 {
     background: url(../img/home/header_2.jpg);
