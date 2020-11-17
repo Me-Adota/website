@@ -1,11 +1,236 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock page_styles%}
+
 
 {% block content %}
-    <p>Conteúdo da Home</p>
 
-    {% load socialaccount %}
-    <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook OAuth2</a>
-    <!-- <a href="/accounts/github/login/callback/" method="oauth2" %}">Github OAuth</a> This is a bug that will be solved in future ...(After i had sleep)-->
-    <hr>(OBS: After login the user back went back to this page, if want to change this go to setting.py and change 'LOGIN_REDIRECT_URL' Variable )
-    <!-- <br>(OBS2: Dont lose time fixing this right now, but first create user administration area) (; -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 py-5">
+                    <h1>
+                        <strong>
+                            Abra o seu coração e a sua casa.
+                        </strong>
+                    </h1>
+                    <p>
+                        Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet.
+                    </p>
+                    <button class="btn btn-lg btn-light btn-rounded px-4">
+                        Faça um amigo <i class="far pl-2 fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container py-5 text-secondary">
+                <div class="row text-center">
+                    <div class="col-12">
+                        <h3>
+                            <strong>
+                                Tipos de amigos disponíveis:
+                            </strong>
+                        </h3>
+
+                        <div class="hr-box">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p>
+                            Lorem ipsum dolor sit.
+                        </p>
+                    </div>
+                </div>
+                <div class="row py-5">
+                    <div class="col-3 px-5 text-center">
+                        <div style="height: 100%; max-height: 180px;">
+                            <img class="img-thumbnail img-rounded img-fit" src="{% static 'img/home/cat.jpg' %}" alt="">
+                        </div>
+                        <br>
+                        <h4><strong>Gatos</strong></h4>
+                    </div>
+                    <div class="col-3 px-5 text-center">
+                        <div style="height: 100%; max-height: 180px;">
+                            <img class="img-thumbnail img-rounded img-fit" src="{% static 'img/home/dog.jpg' %}" alt="">
+                        </div>
+                        <br>
+                        <h4><strong>Cachorros</strong></h4>
+                    </div>
+                    <div class="col-3 px-5 text-center">
+                        <div style="height: 100%; max-height: 180px;">
+                            <img class="img-thumbnail img-rounded img-fit" src="{% static 'img/home/cacatua.jpeg' %}" alt="">
+                        </div>
+                        <br>
+                        <h4><strong>Pássaros</strong></h4>
+                    </div>
+                    <div class="col-3 px-5 text-center">
+                        <div style="height: 100%; max-height: 180px;">
+                            <img class="img-thumbnail img-rounded img-fit" src="{% static 'img/home/coelho.jpg' %}" alt="">
+                        </div>
+                        <br>
+                        <h4><strong>Coelhos</strong></h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1><strong>...</strong></h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SOME ADDITIONAL INFORMATION -->
+        <section id="additional-information">
+            <div class="container">
+                <div class="row py-5">
+                    <div class="col-6">
+                        <img class="img-fluid" src="{% static 'img/home/additional.png'%}" alt="">
+                    </div>
+                    <div class="col-6 align-self-center">
+                        <div class="text-center">
+                            <h1><strong>Por que adotar um amigo?</strong></h1>
+                            <br>
+                        </div>
+                        
+                        <p class="text-justify">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adotando um pet em situação vulnerável você não está apenas <mark>salvando uma vida</mark>,
+                            mas também ganhando um companheiro que te trará inúmeros benefícios, como por exemplo:
+                        </p>
+                        <br>
+
+                        <div class="text-success pl-5">
+                            <h5><i class="fas pr-2 fa-check-circle"></i> Elevação da autoestima</h5>
+                            <h5><i class="fas pr-2 fa-check-circle"></i> Melhora da capacidade de organização</h5>
+                            <h5><i class="fas pr-2 fa-check-circle"></i> Desenvolvimento da comunicação e empatia</h5>
+                        </div>
+
+                        <div class="w-100 text-center py-5">
+                            <button class="btn btn-lg btn-danger w-50 btn-rounded px-4">
+                                Faça um amigo<i class="fas pl-2 fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="header_2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 pt-5 text-center">
+                        <h3>
+                            <strong>
+                                Alguns dados interessantes:
+                            </strong>
+                        </h3>
+
+                        <div class="hr-box">
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-5">
+                    <div class="col-3 text-center">
+                        <div class="img-info p-4 mx-auto">
+                            <img class="img-fluid" src="{% static 'img/home/header_2_1.png' %}" width="100%" alt="">
+                        </div>
+                        <br>
+                        <h3>50</h3>
+                        <h3>Bla bla</h3>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="img-info p-4 mx-auto">
+                            <img class="img-fluid" src="{% static 'img/home/header_2_2.png' %}" width="100%" alt="">
+                        </div>
+                        <br>
+                        <h3>50</h3>
+                        <h3>Bla bla</h3>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="img-info p-4 mx-auto">
+                            <img class="img-fluid" src="{% static 'img/home/header_2_3.png' %}" width="100%" alt="">
+                        </div>
+                        <br>
+                        <h3>50</h3>
+                        <h3>Bla bla</h3>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="img-info p-4 mx-auto">
+                            <img class="img-fluid" src="{% static 'img/home/header_2_4.png' %}" width="70%" alt="">
+                        </div>
+                        <br>
+                        <h3>50</h3>
+                        <h3>Bla bla</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <div class="container px-5 pb-5">
+                <div class="row pt-5">
+                    <div class="col-12 text-center text-secondary">
+                        <h3>
+                            <strong>
+                                Veja nossos artigos:
+                            </strong>
+                        </h3>
+
+                        <div class="hr-box">
+                            <hr>
+                        </div>
+
+                        <p>
+                            Não concordo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row py-5 px-5">
+                    <div class="col-4">
+                        <div class="card">
+                            <img class="card-img-top" src="{% static 'img/home/article_1.jpeg'%}" alt="">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <a href="#" class="btn btn-primary btn-rounded w-100 btn-lg btn-cards">Go somewhere</a>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img class="card-img-top" src="{% static 'img/home/article_1.jpeg'%}" alt="">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <a href="#" class="btn btn-primary btn-rounded w-100 btn-lg btn-cards">Go somewhere</a>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <img class="card-img-top" src="{% static 'img/home/article_1.jpeg'%}" alt="">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <a href="#" class="btn btn-primary btn-rounded w-100 btn-lg btn-cards">Go somewhere</a>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
 {% endblock content %}

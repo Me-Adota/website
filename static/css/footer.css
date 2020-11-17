@@ -1,0 +1,55 @@
+footer {
+    background: #001f3c;
+}
+
+.after-footer {
+    background-color: #00162a;
+}
+.after-footer small {
+    color: rgba(255,255,255,.35);
+}
+.after-footer small a {
+    color: rgba(255,255,255,.35) !important;
+    text-decoration: underline !important;
+}
+
+.footer-logo {
+    width: 100%;
+    max-width: 80px;
+}
+
+footer button:active, footer button:focus {
+    box-shadow: 2px 2px 5px rgba(0,0,0,1) !important;
+    outline: none !important;
+}
+
+footer a {
+    text-decoration: none !important;
+}
+
+
+.social-button {
+    color: white !important;
+    box-shadow: 2px 2px 5px rgba(0,0,0,1);
+    font-size: 1.3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px !important;
+    width: 40px !important;
+    border-radius: 50px;
+}
+
+.twitter-button {
+    background-color: #1DA1F2;
+}
+.facebook-button {
+    background-color: #3b5998;
+}
+.instagram-button {
+    background-color: #C13584;
+}
+
+.unb-icon {
+    max-width: 30px;
+}
