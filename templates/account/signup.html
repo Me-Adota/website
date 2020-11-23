@@ -1,21 +1,71 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
+{% load static %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
+{% block page_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/accounts.css' %}">
+{% endblock page_styles %}
+
+
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+<div id="loading-box">
+  <div class="container h-100 text-center">
+      <div class="row">
+          <div class="col-12 align-self-center">
+              <img class="img-fluid loading-dog" src="{% static 'img/common/loading_1.gif' %}" alt="">
+              <br>
+              <img class="img-fluid loading-gif" src="{% static 'img/common/loading_2.gif' %}" alt="">
+          </div>
+      </div>
+  </div>
+</div>
+
+<header>
+  <div class="container">
+    <div class="row py-5 justify-content-center">
+      <div class="col-4 py-5 px-4">
+        <div class="text-center">
+          <h3>Registre-se agora mesmo!</h3>
+        </div>
+
+        {% get_providers as socialaccount_providers %}
+        
+        <div class="d-flex pb-2">
+          <a class="btn btn-google btn-lg btn-rounded w-100 mr-2" href="#">
+            <i class="fab fa-google"></i>
+          </a>
+          <a class="btn btn-facebook btn-lg btn-rounded w-100 mr-2" href="/accounts/facebook/login/?process=signup">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a class="btn btn-twitter btn-lg btn-rounded w-100" href="#">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+        
+        <hr>
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+          {{ form|crispy }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <button class="btn btn-primary btn-rounded btn-lg w-100" type="submit">Registrar &raquo;</button>
+        
+          <div class="text-center pt-2 w-100">
+            <small><a class="button secondaryAction" href="{% url 'account_login' %}">JÁ POSSUI UMA CONTA?</a>
+            </small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
 
 {% endblock %}
