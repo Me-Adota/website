@@ -45,10 +45,15 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    # AllAuth [custom providers]
+    'allauth.socialaccount.providers.facebook',
     #my apps
     'users',
     'pets',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SITE_ID = 1
 
@@ -61,6 +66,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_LOGOUT_ON_GET = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,13 +80,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'meAdota.urls'
 
-SOCIALACCOUNT_PROVIDERS = {
-}
-
-SOCIALACCOUNT_PROVIDERS = {
-    'facebook': {
-        'LOCALE_FUNC': lambda request: 'en_US'
-    }
+ACCOUNT_FORMS = {
+    'login': 'users.forms.MyLoginForm',
+    'signup': 'allauth.account.forms.SignupForm',
+    'add_email': 'allauth.account.forms.AddEmailForm',
+    'change_password': 'allauth.account.forms.ChangePasswordForm',
+    'set_password': 'allauth.account.forms.SetPasswordForm',
+    'reset_password': 'allauth.account.forms.ResetPasswordForm',
+    'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
+    'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
 }
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -101,7 +109,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'short_name'
         ],
         'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': 'path.to.callable',
+        'LOCALE_FUNC': lambda request: 'en_US',
         'VERIFIED_EMAIL': False,
         'VERSION': 'v7.0',
     }
