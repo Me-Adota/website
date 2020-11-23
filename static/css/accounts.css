@@ -1,0 +1,42 @@
+header {
+    background: url(../img/common/paws_texture.jpg);
+    background-size: 340px;
+    background-repeat: repeat;
+
+    box-shadow: inset 0 0 0 100vmax rgba(0, 41, 79, 0.15);
+}
+
+header .col-4 {
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 3px 5px 5px rgba(0,0,0,.5);
+}
+
+header .col-4 .btn-facebook {
+    color: white;
+    background-color: #3b5998;
+}
+
+header .col-4 .btn-twitter {
+    color: white;
+    background-color: #1DA1F2;
+}
+header .col-4 .btn-google {
+    color:  WHITE;
+    background-color: #EA4335;
+
+}
+
+header .col-4 .form-control {
+    border-radius: 25px !important;
+    text-align: center;
+}
+
+header .col-4 .requiredField {
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
