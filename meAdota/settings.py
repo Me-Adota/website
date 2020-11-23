@@ -24,7 +24,7 @@ SECRET_KEY = 'r#t=zrqyt*dwpc*p9jg#a3y-335q@pplmpff#fo7ot3y%-bz@v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 STATIC_ROOT = ''
 
@@ -45,9 +45,22 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    #my apps
+    'users',
+    'pets',
 ]
 
-SITE_ID = 2
+SITE_ID = 1
+
+AUTH_USER_MODEL = 'users.User'
+
+#verify email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #check email on console
+ACCOUNT_EMAIL_VERIFICATION = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,13 +75,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'meAdota.urls'
 
 SOCIALACCOUNT_PROVIDERS = {
-    'github': {
-        'SCOPE': [
-            'user',
-            'repo',
-            'read:org',
-        ],
-    }
 }
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -107,7 +113,7 @@ LOGIN_REDIRECT_URL ='/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR / "templates"), str(BASE_DIR / "templates/allauth")],
+        'DIRS': [str(BASE_DIR / "templates"), str(BASE_DIR / "templates/account")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,8 +142,12 @@ WSGI_APPLICATION = 'meAdota.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
