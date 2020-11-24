@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Load dotenv
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -154,7 +155,7 @@ WSGI_APPLICATION = 'meAdota.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv("DATABASE_ENGINE"),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv("DATABASE_NAME"),
         'USER': os.getenv("DATABASE_USER"),
         'PASSWORD': os.getenv("DATABASE_PASSWORD"),
