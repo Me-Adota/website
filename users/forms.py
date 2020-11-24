@@ -165,8 +165,8 @@ class UserAdminCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email','full_name')
-
+        fields = ('email','full_name','date_of_birth', 'address1', 'address2', 'zip_code', 'city', 'country', 'mobile_phone', 'additional_information', 'photo','cpf',)
+        widgets = {'date_of_birth': forms.DateInput(attrs={'type':'date'})}
     def clean_password2(self):
         # Check that the two password entries match
         password1 = self.cleaned_data.get("password1")
@@ -193,8 +193,9 @@ class UserAdminChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('full_name', 'email', 'password', 'active', 'admin')
-
+        fields = ('full_name', 'email', 'password', 'active', 'admin','date_of_birth', 'address1', 'address2',
+        'zip_code', 'city', 'country', 'mobile_phone', 'additional_information', 'photo','cpf',)
+        widgets = {'date_of_birth': forms.DateInput(attrs={'type':'date'})}
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
         # This is done here, rather than on the field, because the

@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'django_countries',
+    'cpf_field',
     # AllAuth [custom providers]
     'allauth.socialaccount.providers.facebook',
     #my apps
@@ -84,6 +86,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'meAdota.urls'
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'LOCALE_FUNC': lambda request: 'en_US'
+    }
 
 ACCOUNT_FORMS = {
     'login': 'users.forms.MyLoginForm',
@@ -163,7 +171,6 @@ DATABASES = {
         'PORT': os.getenv("DATABASE_PORT"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
