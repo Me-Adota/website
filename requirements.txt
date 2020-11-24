@@ -19,6 +19,7 @@ django-cpf==0.1.0
 entrypoints==0.3
 filelock==3.0.12
 html5lib==1.0.1
+django-crispy-forms==1.10.0
 idna==2.10
 importlib-metadata==2.0.0
 iniconfig==1.1.1
@@ -41,9 +42,11 @@ pycairo==1.20.0
 pycparser==2.20
 pycrypto==2.6.1
 PyGObject==3.30.4
+pytest==6.1.1
+pydot==1.4.1
 PyJWT==1.7.1
 pyparsing==2.4.7
-pytest==6.1.1
+python-dotenv==0.15.0
 python3-openid==3.2.0
 pytoml==0.1.21
 pytz==2020.1
