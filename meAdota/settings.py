@@ -45,9 +45,11 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'django_countries',
+    'cpf_field',
     #my apps
     'users',
-    'pets',
+    'pets'
 ]
 
 SITE_ID = 1
@@ -75,6 +77,13 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'meAdota.urls'
 
 SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+        ],
+    }
 }
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -150,7 +159,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
