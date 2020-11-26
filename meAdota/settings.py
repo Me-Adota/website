@@ -92,6 +92,7 @@ SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'LOCALE_FUNC': lambda request: 'en_US'
     }
+}
 
 ACCOUNT_FORMS = {
     'login': 'users.forms.MyLoginForm',
