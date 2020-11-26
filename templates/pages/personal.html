@@ -1,0 +1,139 @@
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock page_styles%}
+
+{% block content %}
+
+<h1>Ola, {{user}}! </h1>
+
+<form method="POST" action="{% url 'users:updateInfo' %}" >
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="full_name">Nome completo</label>
+            <input type="text" class="form-control" id="full_name" name="full_name" placeholder="" value="" >
+            <div class="invalid-feedback">
+                Nome completo é necessario
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="password">Senha</label>
+            <input type="text" class="form-control" id="password" name="password" placeholder="" value="" >
+            <div class="invalid-feedback">
+                Senha é necessaria
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="mb-3">
+        <label for="email">Email <span class="text-muted"></span></label>
+        <input type="email" class="form-control" id="email" name="email" value="" placeholder="Ex: you@example.com">
+        <div class="invalid-feedback">
+            Por favor insira um email válido.
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <label for="identification_type">Tipo de documento</label>
+            <select class="custom-select d-block w-100" name="identification_type" value="CPF" id="identification_type" data-checkout="identification_type">
+                <option value="CPF">CPF</option>
+                <option value="CNPJ">CNPJ</option>
+            </select>
+        </div>
+
+        <div class="col-md-6 mb-6">
+            <label for="identification_number">Número do documento</label>
+            <input class="form-control" type="text" id="docNumber" name="identification_number" value="" data-mask="000.000.000-00" placeholder="031.000.000-00" autocomplete="off" maxlength="14">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label for="zip_code">CEP  </label>
+            <input type="text" class="form-control" id="zip_code" name="zip_code" value="" data-mask="00000-000" placeholder="Ex: 70000-000" autocomplete="off" maxlength="9">
+        </div>
+        <div class="col-md-8">
+            <label for="address">Endereço </label>
+            <input type="text" class="form-control" id="address" value="" name="address" placeholder="Ex: Asa sul SQS 510">
+
+        </div>
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+            <label for="federal_unit">Estado </label>
+            <select class="custom-select d-block w-100" id="federal_unit" name="federal_unit" value="" >
+                <option value="">Escolha...</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF" selected="selected">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+            </select>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="city">Cidade </label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="Ex: Aracaju" value="">
+
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="neighborhood">Bairro </label>
+            <input type="text" class="form-control" id="neighborhood" name="neighborhood" placeholder="Morumbi" value="">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 mb-9">
+            <label for="street_name">Nome da rua </label>
+            <input type="text" class="form-control" id="street_name" name="street_name" placeholder="Ex: Av. Lagos" value="">
+
+        </div>
+        <div class="col-md-2 mb-3">
+            <label for="street_number">Numero da rua </label>
+            <input type="text" class="form-control" id="street_number" name="street_number" placeholder="Ex: 200" value="">
+
+        </div>
+
+    </div>
+
+    <hr class="mb-4">
+    <div class="row  justify-content-end">
+        <div class="col-3">
+            <button class="btn btn-primary btn-lg btn-block" id="updt_user_info" type="submit">Salvar dados</button>
+        </div>
+    </div>
+  </form>
+{% endblock content %}

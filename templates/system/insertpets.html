@@ -1,0 +1,96 @@
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock page_styles%}
+
+{% block content %}
+{% comment %} <form action="{% url 'pets:insertPet' %}" method="post" >
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        <div class="form-group text-error">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+
+    <button type="submit"> Enviar </button>
+</form> {% endcomment %}
+{% comment %} {{form.errors}} {% endcomment %}
+
+
+
+<h3>Cadastrar pet</h3>
+    <form method="POST" action="{% url 'pets:insertPet' %}" >
+        {% csrf_token %}
+
+        <hr>
+        <div class="" data-provides="fileinput">
+
+            <div style="height:160px;">
+                <img id="imagePreviewcourses" src="#" alt="your image">
+            </div> 
+            <div>
+                <span class="btn btn-raised btn-round btn-default btn-file" onclick="document.getElementById('selectedFile').click();">
+                    <a style="max-width:100%; max-height:100%;" class="fileinput-new">Selecionar imagem</a>
+                    <input type="file" id="selectedFile" name="img" style="display: none;">
+                </span>
+            </div>
+        </div>
+
+        <input type="file" id="" name="image" style="display: none;">
+        <input type="text" class="" name="name" placeholder="Nome do Pet">
+        <input type="text" class="" name="description" placeholder="Descrição">
+        <input type="text" class="" name="birth_date" placeholder="Data de nascimento">
+        <input type="text" class="" name="pet_type" placeholder="Tipo do Pet">
+        <input type="text" class="" name="breed" placeholder="Raça">
+        <input type="text" class="" name="size" placeholder="Tamanho">
+        <br>
+        Sexo<br>
+        <input type="radio" id="male" name="sex" value="male">
+        <label for="male">Feminino</label><br>
+        <input type="radio" id="female" name="sex" value="female">
+        <label for="female">Masculino</label><br>
+     
+        Vacinado?<br>
+        <input type="radio" id="male" name="vaccinated" value="True">
+        <label for="male">Sim</label><br>
+        <input type="radio" id="female" name="vaccinated" value="False">
+        <label for="female">Não</label>
+        <br>
+        Castrado?<br>
+        <input type="radio" id="male" name="castrated" value="True">
+        <label for="male">Sim</label><br>
+        <input type="radio" id="female" name="castrated" value="False">
+        <label for="female">Nao</label><br>
+
+        Domado?<br>
+        <input type="radio" id="male" name="vulnerable" value="True">
+        <label for="male">Sim</label><br>
+        <input type="radio" id="female" name="vulnerable" value="False">
+        <label for="female">Nao</label><br>
+
+        Vulneravel?<br>
+        <input type="radio" id="male" name="dewormed" value="True">
+        <label for="male">Sim</label><br>
+        <input type="radio" id="female" name="dewormed" value="False">
+        <label for="female">Nao</label><br>
+        
+        <button type="submit"> Enviar </button>
+
+    </form>
+</div> 
+
+{% endblock content %}
