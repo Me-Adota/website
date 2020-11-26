@@ -20,10 +20,9 @@ from django.conf.urls import include
 
 
 urlpatterns = [
-    path('', HomeView.as_view(), name = "home"),
     path('admin/', admin.site.urls),
+    path('', include('pages.urls')),
     path('accounts/', include('allauth.urls')),
-    path('system/personal', include('users.urls') ),
-    path('system/pets', include('pets.urls') ),
-
-]   
+    path('system/personal', include('users.urls')),
+    path('system/pets', include('pets.urls')),
+]
