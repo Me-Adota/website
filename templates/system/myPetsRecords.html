@@ -21,7 +21,7 @@ Vacinado: {{pet.vaccinated}}<br>
 Castrado: {{pet.castrated}}<br>
 Tamanho: {{pet.dewormed}}<br>
 Vulnerável: {{pet.vulnerable}}<br>
-<button href="#"> Atualizar informacao </button>
+<a href="{% url 'pets:EditPet' pet.id %}   "> Atualizar informacao </a>
 <hr>
 {% endfor %}
 
