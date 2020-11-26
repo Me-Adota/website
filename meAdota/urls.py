@@ -23,6 +23,7 @@ urlpatterns = [
     path('', HomeView.as_view(), name = "home"),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('system/personal', include('users.urls')),
-    path('system/pets', include('pets.urls'))
-]
+    path('system/personal', include('users.urls') ),
+    path('system/pets', include('pets.urls') ),
+
+]   
