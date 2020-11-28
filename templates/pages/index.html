@@ -212,36 +212,33 @@
                 </div>
 
                 <div class="row py-5 px-5">
-                    <div class="col-4">
-                        <div class="card">
-                            <img class="card-img-top" src="{% static 'img/home/article_1.jpeg'%}" alt="">
-                            <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="#" class="btn btn-primary btn-rounded w-100 btn-lg btn-cards">Go somewhere</a>
+                {% comment %} Imagem : <br><br>
+                        Nome : <br>
+                        Descrição: <br>
+                        Data de nascimento: {{pet.birth_date}}<br>
+                        Tipo do pet: {{pet.type}}<br>
+                        Raça do pet: {{pet.breed}}<br>
+                        Tamanho do pet: {{pet.size}}<br>
+                        Sexo do pet: {{pet.sex}}<br>
+                        Vacinado: {{pet.vaccinated}}<br>
+                        Castrado: {{pet.castrated}}<br>
+                        Tamanho: {{pet.dewormed}}<br>
+                        Vulnerável: {{pet.vulnerable}}<br>
+                        <a href="{% url 'pets:EditPet' pet.id %}   "> Atualizar informacao </a> {% endcomment %}
+                        <hr>
+                    {% for pet in pets %}
+                        <div class="col-4">
+                            <div class="card">
+
+                                <img class="card-img-top" alt="No image" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}">
+                                <div class="card-body">
+                                <h5 class="card-title">{{pet.name}}</h5>
+                                <p class="card-text">{{pet.description}}</p>
+                                <a href="{%  url 'pages:Details' pet.id  %}" class="btn btn-primary btn-rounded w-100 btn-lg btn-cards">Go somewhere</a>
+                                </div>
                             </div>
-                          </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <img class="card-img-top" src="{% static 'img/home/article_1.jpeg'%}" alt="">
-                            <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="#" class="btn btn-primary btn-rounded w-100 btn-lg btn-cards">Go somewhere</a>
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <img class="card-img-top" src="{% static 'img/home/article_1.jpeg'%}" alt="">
-                            <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="#" class="btn btn-primary btn-rounded w-100 btn-lg btn-cards">Go somewhere</a>
-                            </div>
-                          </div>
-                    </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
