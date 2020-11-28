@@ -70,7 +70,7 @@ class User(AbstractBaseUser):
     phone_regex = RegexValidator(regex=r"^\+(?:[0-9]●?){6,14}[0-9]$", message=_("Enter a valid international mobile phone number starting with +(country code)"))
     mobile_phone = models.CharField(validators=[phone_regex], verbose_name=_("Mobile phone"), max_length=17, blank=True, null=True)
     additional_information = models.CharField(verbose_name=_("Additional information"), max_length=4096, blank=True, null=True)
-    photo = models.ImageField(verbose_name=_("Photo"), upload_to='photos/', default='photos/default-user-avatar.png')
+    photo = models.ImageField(verbose_name=_("Photo"), upload_to='photos', default='photos/default-user-avatar.png')
     # notice the absence of a "Password field", that is built in.
 
     USERNAME_FIELD = 'email'

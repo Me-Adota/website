@@ -1,11 +1,9 @@
 # users.forms.py
 from allauth.account.forms import *
-
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import User
-
 class MyLoginForm(forms.Form):
     """
         Custom ALL AUTH LOGIN form.
@@ -182,8 +180,6 @@ class UserAdminCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-
-
 class UserAdminChangeForm(forms.ModelForm):
     """A form for updating users. Includes all the fields on
     the user, but replaces the password field with admin's
@@ -201,3 +197,28 @@ class UserAdminChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
+
+class UserEditForms(forms.ModelForm):
+    class Meta: 
+        model = User 
+        fields = (
+            'full_name' , 'active' ,'cpf',
+            'date_of_birth','address1','address2',
+            'zip_code', 'city','country',
+            'mobile_phone','additional_information','photo',
+            'email'
+        ) 
+
+# full_name
+# active
+# cpf
+# date_of_birth
+# address1
+# address2
+# zip_code
+# city
+# country
+# phone_regex
+# mobile_phone
+# additional_information
+# photo

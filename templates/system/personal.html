@@ -10,7 +10,37 @@
 
 <h1>Ola, {{user.full_name}}! </h1>
 
-<form method="POST" action="{% url 'users:userInfo' %}" >
+
+<h3>{{ pet.name }} </h3>
+
+    <form method="POST" action="{% url 'users:userInfo' %}" enctype="multipart/form-data">
+        <hr>
+        {% csrf_token %} 
+        {{form.error}}
+        <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/photos/{{user.photo}}"><br>
+        Foto:<br>{{ form.photo }}<br>
+        Nome:<br>{{ form.full_name }}<br>
+        Email:<br>{{ form.email }}<br>
+        CPF: <br>{{ form.cpf }} <br>
+        Data de nascimento: (YYYY/MM/DD)<br>{{ form.date_of_birth }}<br>
+        Endereço: <br>{{ form.address1 }}<br>
+        Complemento: <br>{{ form.address2 }}<br>
+        Código postal (CEP): <br>{{ form.zip_code }}<br>
+        Cidade: <br>{{ form.city }}<br>
+        Informações adicionais: <br>{{ form.additional_information }}<br>
+        Telefone: <br>{{ form.mobile_phone }}<br>
+        <button type="submit"> Salvar </button>
+
+    </form>
+</div>  
+
+
+
+
+
+
+
+{% comment %} <form method="POST" action="{% url 'users:userInfo' %}" >
     {% csrf_token %}
     <div class="row">
         <div class="col-md-6 mb-3">
@@ -47,7 +77,7 @@
                 <option value="CNPJ">CNPJ</option>
             </select>
         </div> {% endcomment %}
-        {% comment %} <input type="hidden"  value="CPF"> {% endcomment %}
+        {% comment %} <input type="hidden"  value="CPF"> 
 
         <div class="col-md-6 mb-6">
             <label for="identification_number">Número do documento</label>
@@ -152,9 +182,17 @@
             <button class="btn btn-primary btn-lg btn-block" id="updt_user_info" type="submit">Salvar dados</button>
         </div>
     </div>
-  </form>
+  </form> {% endcomment %}
 
 <script>
+
+$(document).ready(function(){
+    $("#id_password").attr("type", "password"); 
+    $("#id_cpf").attr("data-mask" , "000.000.000-00");
+    $("#id_zip_code").attr("data-mask" , "00000-000");
+    $("#id_date_of_birth").attr("data-mask" , "0000-00-00");
+});
+
 // jQuery Mask Plugin v1.14.16
 // github.com/igorescobar/jQuery-Mask-Plugin
 $(document).ready(function(){
