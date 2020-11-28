@@ -8,104 +8,38 @@
 
 {% block content %}
 
-
-{% comment %} <form method="POST" action="{% url 'pets:insertPet' %}" >
-        {% csrf_token %}
-            {% for field in form %}
-                <div class="fieldWrapper">
-                    {{ field.errors }}
-                    {{ field.label_tag }} {{ field }}
-                </div>
-            {% endfor %}
-        <input type="submit" value="Submit">
-</form> {% endcomment %}
-
-{% comment %} <form action="{% url 'pets:insertPet' %}" method="post" >
-    {% csrf_token %}
-    {% if form.non_field_errors %}
-        <div class="form-group text-error">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
-
-    {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
-            {% if field.help_text %}
-            <p class="help">{{ field.help_text|safe }}</p>
-            {% endif %}
-        </div>
-    {% endfor %}
-
-
-    <button type="submit"> Enviar </button>
-</form> {% endcomment %}
-{% comment %} {{form.errors}} {% endcomment %}
-
-
 <h3>Cadastrar pet</h3>
-    <form method="POST" action="{% url 'pets:insertPet' %}" >
-        {% csrf_token %}
 
+    <form method="POST" action="{% url 'pets:insertPet' %}" enctype="multipart/form-data">
         <hr>
-        {% comment %} <div class="" data-provides="fileinput">
+        {% csrf_token %} 
+        {{form.error}}
+        <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
+        Foto do Pet:<br>{{ form.image }}<br>
+        Nome: <br>{{ form.name }} <br>
+        Descrição: <br>{{ form.description }} <br>
+        Data de nascimento: (YYYY/MM/DD)<br>{{ form.birth_date }}<br>
+        Tipo do pet: <br>{{ form.pet_type }}<br>
+        Raça: <br>{{ form.breed }}<br>
+        Tamanho: <br>{{ form.size }}<br>
+        Sexo: <br>{{ form.sex }}<br>
+        Vacinado: <br>{{ form.vaccinated }}<br>
+        Castrado: <br>{{ form.castrated }}<br>
+        Vermifugado: <br>{{ form.dewormed }}<br>
+        Vulnerável: <br>{{ form.vulnerable }}<br>
 
-            <div style="height:160px;">
-                <img id="imagePreviewcourses" src="#" alt="your image">
-            </div> 
-            <div>
-                <span class="btn btn-raised btn-round btn-default btn-file" onclick="document.getElementById('selectedFile').click();">
-                    <a style="max-width:100%; max-height:100%;" class="fileinput-new">Selecionar imagem</a>
-                    <input type="file" id="selectedFile" name="img" style="display: none;">
-                </span>
-            </div>
-        </div> {% endcomment %}
-
-        <input type="file" id="" name="image" style="display: none;" >
-        <input type="text" class="" name="name" placeholder="Nome do Pet" value="{{pet.name}}">
-        <input type="text" class="" name="description" placeholder="Descrição" value="{{pet.description}}">
-        <input type="text" class="" name="birth_date" placeholder="1998/31/01" value="{{pet.birth_date}}">
-        <input type="text" class="" name="pet_type" placeholder="Tipo do Pet" value="{{pet.pet_type}}">
-        <input type="text" class="" name="breed" placeholder="Raça" value="{{pet.breed}}">
-        <input type="text" class="" name="size" placeholder="Tamanho" value="{{pet.size}}">
-        <br>
-        Sexo<br>
-        <input type="radio" id="male" name="sex" {% if pet.sex == "M"  %} checked {% endif %} value="M">
-        <label for="male">Feminino</label><br>
-        <input type="radio" id="female" checked="{% if pet.sex == None or pet.sex == "F"  %} checked {% endif %}"  name="sex" value="F">
-        <label for="female">Masculino</label><br>
-     
-        Vacinado?<br>
-        <input type="radio" id="male" name="vaccinated" {% if pet.sex == "True"  %}checked ="checked" {% endif %} value="True">
-        <label for="male">Sim</label><br>
-        <input type="radio" id="female" checked="{% if pet.vaccinated == None or pet.vaccinated == "F"  %} checked {% endif %}"  name="vaccinated" value="False">
-        <label for="female">Não</label>
-        <br>
-        Castrado?<br>
-        <input type="radio" id="male" name="castrated" {% if pet.castrated == "True"  %}checked ="checked"{% endif %} value="True">
-        <label for="male">Sim</label><br>
-        <input type="radio" id="female"  checked="{% if pet.castrated == None or pet.castrated == "False"  %} checked {% endif %}"  name="castrated" value="False">
-        <label for="female">Nao</label><br>
-
-        Domado?<br>
-        <input type="radio" id="male"  {% if pet.vulnerable == "True"  %} checked ="checked"{% endif %} name="vulnerable" value="True">
-        <label for="male">Sim</label><br>
-        <input type="radio" id="female" checked="{% if pet.vulnerable == None or pet.vulnerable == "False"  %} checked {% endif %}"   name="vulnerable" value="False">
-        <label for="female">Nao</label><br>
-
-        Vulneravel?<br>
-        <input type="radio" id="male" {% if pet.dewormed == "True"  %} checked ="checked"{% endif %} name="dewormed" value="True">
-        <label for="male">Sim</label><br>
-        <input type="radio" checked="{% if pet.dewormed == None or pet.dewormed == "False"  %} checked {% endif %}" id="female" name="dewormed" value="False">
-        <label for="female">Nao</label><br>
-        
         <button type="submit"> Enviar </button>
 
     </form>
 </div>  
 
 <script>
+
+$(document).ready(function() {
+    $("#id_name").addClass("input-field");
+    $("#id_birth_date").attr("data-mask" , "0000-00-00");
+    $("#id_birth_date").attr("placeholder" , "1998-25-03",);
+})
 // jQuery Mask Plugin v1.14.16
 // github.com/igorescobar/jQuery-Mask-Plugin
 $(document).ready(function(){
