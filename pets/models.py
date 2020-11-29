@@ -2,8 +2,8 @@ from users.models import User
 from django.db import models
 
 class Pet(models.Model):
-    PET_SIZES = [('S', 'Small'), ('M', 'Medium'), ('L', 'Large')]
-    PET_SEX = [('M', 'Male'), ('F', 'Female')]
+    PET_SIZES = [('P', 'Pequeno'), ('M', 'Médio'), ('G', 'Grande')]
+    PET_SEX = [('M', 'Macho'), ('F', 'Fêmea')]
 
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='pet_image', blank=False, null=False) 
@@ -18,3 +18,4 @@ class Pet(models.Model):
     castrated = models.BooleanField(default=False)
     dewormed = models.BooleanField(default=False)
     vulnerable = models.BooleanField(default=False)
+    isAdopted = models.BooleanField(default=False)

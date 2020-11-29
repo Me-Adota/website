@@ -2,10 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Pet
 from .forms import PetForm
-from users.models import User
-# from django.core.urlresolvers import reverse
 
-# Create your views here.
 def All(request):
     if not request.user.is_authenticated:
         print("This is a not logged user bro:")
@@ -16,44 +13,26 @@ def All(request):
     return render(request, 'system/personal.html', {"user" : user})
 
 def insertPets(request):
-    if not request.user.is_authenticated:
-        return render(request, '')
-    u = User.objects.get(id=request.user.id)
-    
-    if request.method == 'POST':
-        # form = PetForm()
-        # PetForm.objects.create(image = 'image.jpg',name = 'name', description= 'description', birth_date ='birth_date', pet_type = 'pet_type', breed = 'breed',size = 'S', sex = 'M', vaccinated ='vaccinated', castrated = 'castrated', dewormed = 'dewormed',vulnerable ='vulnerable')
-        pets = (Pet)
-        form = pets.objects.create(
-            user_id = request.user.id,
-            # image = FILE['image'],
-            name = request.POST['name'],
-            description = request.POST['description'],
-            birth_date = request.POST['birth_date'],
-            pet_type = request.POST['pet_type'] ,
-            breed = request.POST['breed'] ,
-            size = request.POST['size'],
-            sex = request.POST['sex'],
-            vaccinated = request.POST['vaccinated'],
-            castrated = request.POST['castrated'],
-            dewormed = request.POST['dewormed'],
-            vulnerable = request.POST['vulnerable']
-        )
-    else:
-        form = PetForm()
-    return render(request, 'system/insertpets.html' , {'form': form})
+
+    if request.method == 'POST': 
+        form = PetForm(request.POST, request.FILES) 
+        if form.is_valid(): 
+            form.instance.user_id = request.user.id
+            form.save() 
+            return redirect('/system/pets/my') 
+    else: 
+        form = PetForm() 
+    return render(request, 'system/insertpets.html', {'form' : form}) 
 
 #get pets by logged user
 def userPets(request):
     pets = Pet.objects.all()
     pets = pets.filter(user_id=request.user.id)
-    
     print(pets)
     for pet in pets:
         print(pet.name)
-
-
     return render(request, 'system/myPetsRecords.html', {"pets" : pets})
+
 
 def editPet(request,id):
     if not request.user.is_authenticated:
@@ -61,37 +40,24 @@ def editPet(request,id):
         return redirect('/accounts/login/')
     else:
         print("successfully logged")
-    
     pet = Pet.objects.get(id=id)
-    pet.save()
+    form = PetForm(instance=pet)
     alert = {}
     if(pet.user_id != request.user.id):
         alert = {"info" : "Esse pet nao te pertence... Ainda."}
         alert = {"error" : "1"}
-    print(pet.id)
 
     if request.method == 'POST':
-        # form = PetForm()
-        # PetForm.objects.create(image = 'image.jpg',name = 'name', description= 'description', birth_date ='birth_date', pet_type = 'pet_type', breed = 'breed',size = 'S', sex = 'M', vaccinated ='vaccinated', castrated = 'castrated', dewormed = 'dewormed',vulnerable ='vulnerable')
-        pets = (Pet)
-        form = pets.objects.create(
-            user_id = request.user.id,
-            # image = FILE['image'],
-            name = request.POST['name'],
-            description = request.POST['description'],
-            birth_date = request.POST['birth_date'],
-            pet_type = request.POST['pet_type'] ,
-            breed = request.POST['breed'] ,
-            size = request.POST['size'],
-            sex = request.POST['sex'],
-            vaccinated = request.POST['vaccinated'],
-            castrated = request.POST['castrated'],
-            dewormed = request.POST['dewormed'],
-            vulnerable = request.POST['vulnerable']
-        )
-    
-    return render(request, 'system/insertpets.html', {'pet':pet, 'alert':alert})
+        form = PetForm(request.POST,request.FILES, instance=pet)
+        form.save() 
+        return redirect('/system/pets/my' , flag='success')
 
+    return render(request, 'system/editPet.html', {'pet':pet, 'alert':alert , 'form':form})
+
+def petDelete(request, id):
+    Pet.objects.filter(id=id).delete()
+    return redirect('/system/pets/my')
 
 def success(request): 
     return HttpResponse('successfully uploaded') 
+

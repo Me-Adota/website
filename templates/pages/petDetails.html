@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock page_styles%}
+
+
+{% block content %}
+
+
+<br>
+<img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
+Foto do Pet:<br>{{ pet.image }}<br>
+Nome: <br>{{ pet.name }} <br>
+Descrição: <br>{{ pet.description }} <br>
+Data de nascimento: (YYYY/MM/DD)<br>{{ pet.birth_date }}<br>
+Tipo do pet: <br>{{ pet.pet_type }}<br>
+Raça: <br>{{ pet.breed }}<br>
+Tamanho: <br>{{ pet.size }}<br>
+Sexo: <br>{{ pet.sex }}<br>
+Vacinado: <br>{{ pet.vaccinated }}<br>
+Castrado: <br>{{ pet.castrated }}<br>
+Vermifugado: <br>{{ pet.dewormed }}<br>
+Vulnerável: <br>{{ pet.vulnerable }}<br>
+<hr>
+<textarea rows="10" placeholder="Escreva aqui um texto contando o por que você gostaria de abrigar o !{{pet.name}}, com detalhes sobre você e o ambiente que o pet ficará com você"></textarea>
+<hr>
+<button> Solicitar pet </button>
+{% endblock content %}

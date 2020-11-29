@@ -8,33 +8,64 @@
 
 {% block content %}
 
-<h3>Cadastrar pet</h3>
 
-    <form method="POST" action="{% url 'pets:insertPet' %}" enctype="multipart/form-data">
-        <hr>
-        {% csrf_token %} 
-        {{form.error}}
-        <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
-        Foto do Pet:<br>{{ form.image }}<br>
-        Nome: <br>{{ form.name }} <br>
-        Descrição: <br>{{ form.description }} <br>
-        Data de nascimento: (YYYY/MM/DD)<br>{{ form.birth_date }}<br>
-        Tipo do pet: <br>{{ form.pet_type }}<br>
-        Raça: <br>{{ form.breed }}<br>
-        Tamanho: <br>{{ form.size }}<br>
-        Sexo: <br>{{ form.sex }}<br>
-        Vacinado: <br>{{ form.vaccinated }}<br>
-        Castrado: <br>{{ form.castrated }}<br>
-        Vermifugado: <br>{{ form.dewormed }}<br>
-        Vulnerável: <br>{{ form.vulnerable }}<br>
+{% comment %} <form method="POST" action="{% url 'pets:insertPet' %}" >
+        {% csrf_token %}
+            {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+            {% endfor %}
+        <input type="submit" value="Submit">
+</form> {% endcomment %}
 
-        <button type="submit"> Enviar </button>
+{% comment %} <form action="{% url 'pets:insertPet' %}" method="post" >
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        <div class="form-group text-error">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
 
-    </form>
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+
+    <button type="submit"> Enviar </button>
+</form> {% endcomment %}
+{% comment %} {{form.errors}} {% endcomment %}
+
+<h3>{{ pet.name }} </h3>
+<form method="POST" action="{% url 'pets:EditPet' pet.id %}" enctype="multipart/form-data">
+    <hr>
+    {% csrf_token %} 
+    {{form.error}}
+    <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
+    Foto do Pet:<br>{{ form.image }}<br>
+    Nome: <br>{{ form.name }} <br>
+    Descrição: <br>{{ form.description }} <br>
+    Data de nascimento: (YYYY/MM/DD)<br>{{ form.birth_date }}<br>
+    Tipo do pet: <br>{{ form.pet_type }}<br>
+    Raça: <br>{{ form.breed }}<br>
+    Tamanho: <br>{{ form.size }}<br>
+    Sexo: <br>{{ form.sex }}<br>
+    Vacinado: <br>{{ form.vaccinated }}<br>
+    Castrado: <br>{{ form.castrated }}<br>
+    Vermifugado: <br>{{ form.dewormed }}<br>
+    Vulnerável: <br>{{ form.vulnerable }}<br>
+    <button type="submit"> Enviar </button>
+</form>
 </div>  
 
 <script>
-
 $(document).ready(function() {
     $("#id_name").addClass("input-field");
     $("#id_birth_date").attr("data-mask" , "0000-00-00");
