@@ -18,3 +18,4 @@ class Pet(models.Model):
     castrated = models.BooleanField(default=False)
     dewormed = models.BooleanField(default=False)
     vulnerable = models.BooleanField(default=False)
+    isAdopted = models.BooleanField(default=False)
