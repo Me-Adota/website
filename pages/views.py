@@ -7,6 +7,10 @@ def aboutUs(request):
 def infos(request):
     return render(request, 'pages/informations.html')
 
+def makeafriend(request):
+    pets = Pet.objects.all()
+    return render(request, 'pages/makeafriend.html', {'pets' : pets})
+
 def HomeView(TemplateView):
     pets = Pet.objects.all()
     return render(TemplateView, "pages/index.html",  {'pets' : pets})
