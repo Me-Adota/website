@@ -9,18 +9,21 @@
 {% block content %}
 
 {% for pet in pets %}
-    Imagem : <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
-    Nome : {{pet.name}}<br>
-    Descrição: {{pet.description}}<br>
-    Data de nascimento: {{pet.birth_date}}<br>
-    Tipo do pet: {{pet.type}}<br>
-    Raça do pet: {{pet.breed}}<br>
-    Tamanho do pet: {{pet.size}}<br>
-    Sexo do pet: {{pet.sex}}<br>
-    Vacinado: {{pet.vaccinated}}<br>
-    Castrado: {{pet.castrated}}<br>
-    Tamanho: {{pet.dewormed}}<br>
-    Vulnerável: {{pet.vulnerable}}<br>
+    {% if pet.isAdopted == False %}
+        Imagem : <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
+        Nome : {{pet.name}}<br>
+        Descrição: {{pet.description}}<br>
+        Data de nascimento: {{pet.birth_date}}<br>
+        Tipo do pet: {{pet.type}}<br>
+        Raça do pet: {{pet.breed}}<br>
+        Tamanho do pet: {{pet.size}}<br>
+        Sexo do pet: {{pet.sex}}<br>
+        Vacinado: {{pet.vaccinated}}<br>
+        Castrado: {{pet.castrated}}<br>
+        Tamanho: {{pet.dewormed}}<br>
+        Vulnerável: {{pet.vulnerable}}<br>
+        Adotado: {{pet.isAdopted}}<br>
+    {% endif %}
 
     <hr>
 {% endfor %}
