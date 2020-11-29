@@ -1,0 +1,30 @@
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock page_styles%}
+
+{% block content %}
+<h1> Meus pets registrados </h1>
+{% for pet in pets %}
+
+Nome : {{pet.name}}<br>
+Descrição: {{pet.description}}<br>
+Data de nascimento: {{pet.birth_date}}<br>
+Tipo do pet: {{pet.type}}<br>
+Raça do pet: {{pet.breed}}<br>
+Tamanho do pet: {{pet.size}}<br>
+Sexo do pet: {{pet.sex}}<br>
+Vacinado: {{pet.vaccinated}}<br>
+Castrado: {{pet.castrated}}<br>
+Tamanho: {{pet.dewormed}}<br>
+Vulnerável: {{pet.vulnerable}}<br>
+<a href="{% url 'pets:EditPet' pet.id %}   "> Atualizar informacao </a>
+<hr>
+{% endfor %}
+
+
+
+{% endblock content %}
