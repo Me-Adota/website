@@ -6,4 +6,4 @@ from django.forms import ModelForm
 class PetForm(forms.ModelForm):
     class Meta: 
         model = Pet 
-        fields = ( 'name','image', 'description','birth_date','pet_type','breed','size', 'sex' ,'vaccinated','castrated','dewormed','vulnerable') 
+        fields = ( 'name','image', 'description','birth_date','pet_type','breed','size', 'sex' ,'vaccinated','castrated','dewormed','vulnerable', 'isAdopted') 
