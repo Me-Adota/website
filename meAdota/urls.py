@@ -28,6 +28,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('system/personal', include('users.urls')),
     path('system/pets', include('pets.urls')),
+    path('/makeafriend', include('pets.urls')),
 ]
 
 
