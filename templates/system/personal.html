@@ -11,13 +11,14 @@
 <h1>Ola, {{user.full_name}}! </h1>
 
 
-<h3>{{ pet.name }} </h3>
+<h3>{{ user.name }} </h3>
 
     <form method="POST" action="{% url 'users:userInfo' %}" enctype="multipart/form-data">
-        <hr>
         {% csrf_token %} 
+        <hr>
         {{form.error}}
-        <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/photos/{{user.photo}}"><br>
+        <br><img src="{{ request.scheme }}://{{ request.get_host }}{{user.photo}}"><br>
+        
         Foto:<br>{{ form.photo }}<br>
         Nome:<br>{{ form.full_name }}<br>
         Email:<br>{{ form.email }}<br>
@@ -25,6 +26,7 @@
         Data de nascimento: (YYYY/MM/DD)<br>{{ form.date_of_birth }}<br>
         Endereço: <br>{{ form.address1 }}<br>
         Complemento: <br>{{ form.address2 }}<br>
+        País: <br>{{ form.country }}<br>
         Código postal (CEP): <br>{{ form.zip_code }}<br>
         Cidade: <br>{{ form.city }}<br>
         Informações adicionais: <br>{{ form.additional_information }}<br>
