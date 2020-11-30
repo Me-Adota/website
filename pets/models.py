@@ -222,7 +222,7 @@ class Pet(models.Model):
     image = models.ImageField(upload_to='pet_image', blank=False, null=False) 
     name = models.CharField(max_length=30, blank=False, null=False)
     description = models.CharField(max_length=500, blank=False, null=False)
-    birth_date = models.DateField(blank=False, null=False)
+    age = models.PositiveSmallIntegerField(null=True)
     size = models.CharField(max_length=1, choices=PET_SIZES, blank=False, null=False)
     sex = models.CharField(max_length=1, choices=PET_SEX, blank=False, null=False)
     vaccinated = models.BooleanField(default=False)
