@@ -3,15 +3,6 @@ from django.shortcuts import render, redirect
 from .models import Pet
 from .forms import PetForm
 
-def All(request):
-    if not request.user.is_authenticated:
-        print("This is a not logged user bro:")
-        return redirect('/accounts/login/')
-    else:
-        print("successfully logged")
-    user = User.objects.all()
-    return render(request, 'system/personal.html', {"user" : user})
-
 def insertPets(request):
 
     if request.method == 'POST': 
