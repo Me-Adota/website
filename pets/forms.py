@@ -9,5 +9,5 @@ class PetForm(forms.ModelForm):
         fields = ( 
                     'name', 'image', 'description','age',
                     'pet_type','breed','size', 'sex' ,'vaccinated',
-                    'castrated','dewormed','vulnerable', 'isAdopted',
+                    'castrated','dewormed','vulnerable', 'isAdopted','adopted_by',
                  ) 
