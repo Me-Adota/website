@@ -219,6 +219,7 @@ def get_other_breeds():
 
 class Pet(models.Model):
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+    adopted_by = models.ForeignKey(User, default=None, on_delete=models.DO_NOTHING)
     image = models.ImageField(upload_to='pet_image', blank=False, null=False) 
     name = models.CharField(max_length=30, blank=False, null=False)
     description = models.CharField(max_length=500, blank=False, null=False)
