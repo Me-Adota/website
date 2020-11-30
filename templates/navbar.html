@@ -26,19 +26,19 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav ml-auto">
+                <div class="navbar-nav ml-auto text-center ">
                     <a class="nav-link active my-auto mr-3 hvr-underline-from-center" href="{% url 'pages:home' %}">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-link my-auto mr-3 hvr-underline-from-center" href="{% url 'pages:aboutUs' %}">Sobre Nós</a>
-                    <a class="nav-link my-auto mr-5 hvr-underline-from-center" href="{% url 'pages:infos' %}">Informações</a>
-                    <a href="{% url 'pages:makeafriend' %}">
-                        <button class="btn btn-danger btn-rounded px-4 mr-2">
+                    <a class="nav-link my-auto mr-3 mr-md-5 hvr-underline-from-center" href="{% url 'pages:infos' %}">Informações</a>
+                    <a class="mb-2 mb-md-0" href="{% url 'pages:makeafriend' %}">
+                        <button class="btn w-100 btn-danger btn-rounded px-4 mr-2">
                             Faça um amigo <i class="fas pl-2 fa-heart"></i>
                         </button>
                     </a>
 
                     {% if user.is_authenticated %}
                         <div class="dropdown show">
-                            <a class="nav-link my-auto btn btn-success btn-rounded px-4 text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link w-100 my-auto btn btn-success btn-rounded px-4 text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="far fa-user"></i> {{user.full_name}}
                             </a>
 
@@ -62,7 +62,7 @@
                         </div>
                             
                     {% else %}
-                        <a class="nav-link my-auto btn btn-success btn-rounded px-4 text-white" href="{% url 'account_login' %}">
+                        <a class="nav-link w-100 my-auto btn btn-success btn-rounded px-4 text-white" href="{% url 'account_login' %}">
                             <i class="far fa-user"></i> Minha Conta
                         </a>
                     {% endif %}
