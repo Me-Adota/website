@@ -12,8 +12,13 @@
 
 
 <h3>{{ user.name }} </h3>
-
-    <form method="POST" action="{% url 'users:userInfo' %}" enctype="multipart/form-data">
+    <!-- CUSTOM ERROR VALIDATOR -->
+    {% if errors.has_errors == 1 %}
+        {% for index, value in errors.error.items %}
+            <li>{{ value }} </li>
+        {% endfor %}
+    {% endif %}
+    <form method="POST" id="userForms" {% url 'users:userInfo' %} enctype="multipart/form-data">
         {% csrf_token %} 
         <hr>
         {{form.error}}
@@ -21,7 +26,7 @@
         
         Foto:<br>{{ form.photo }}<br>
         Nome:<br>{{ form.full_name }}<br>
-        Email:<br>{{ form.email }}<br>
+        Email:<br>{{ user.email }}<br>
         CPF: <br>{{ form.cpf }} <br>
         Data de nascimento: (YYYY/MM/DD)<br>{{ form.date_of_birth }}<br>
         Endereço: <br>{{ form.address1 }}<br>
@@ -35,164 +40,25 @@
 
     </form>
 </div>  
-
-
-
-
-
-
-
-{% comment %} <form method="POST" action="{% url 'users:userInfo' %}" >
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label for="full_name">Nome completo</label>
-            <input type="text" class="form-control" id="full_name" name="full_name" placeholder="" value="{{user.full_name}}" >
-            <div class="invalid-feedback">
-                Nome completo é necessario
-            </div>
-        </div>
-        <div class="col-md-6">
-            <label for="password">Senha</label>
-            <input type="text" class="form-control" id="password" name="password" placeholder="" value="" >
-            <div class="invalid-feedback">
-                Senha é necessaria
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="mb-3">
-        <label for="email">Email <span class="text-muted"></span></label>
-        <input type="email" class="form-control" id="email" name="email" value="{{user.email}}" placeholder="Ex: you@example.com">
-        <div class="invalid-feedback">
-            Por favor insira um email válido.
-        </div>
-    </div>
-
-    <div class="row">
-        {% comment %} <div class="col-md-3 mb-3">
-            <label for="identification_type">Tipo de documento</label>
-            <select class="custom-select d-block w-100" name="identification_type" value="{{user.identification_type}}" id="identification_type" data-checkout="identification_type">
-                <option value="CPF">CPF</option>
-                <option value="CNPJ">CNPJ</option>
-            </select>
-        </div> {% endcomment %}
-        {% comment %} <input type="hidden"  value="CPF"> 
-
-        <div class="col-md-6 mb-6">
-            <label for="identification_number">Número do documento</label>
-            <input class="form-control" type="text" id="docNumber" name="identification_number" value="{{user.cpf}}" data-mask="000.000.000-00" placeholder="031.000.000-00" autocomplete="off" maxlength="14">
-            
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <label for="zip_code">CEP  </label>
-            <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{user.zip_code}}" data-mask="00000-000" placeholder="Ex: 70000-000" autocomplete="off" maxlength="9">
-        </div>
-        <div class="col-md-8">
-            <label for="address">Endereço </label>
-            <input type="text" class="form-control" id="address" value="{{user.address1}}" name="address1" placeholder="Ex: Asa sul SQS 510">
-
-        </div>
-    </div>
-
-
-
-    <div class="row">
-
-        <div class="col-md-4 mb-3">
-            <label for="federal_unit">Estado </label>
-            <select class="custom-select d-block w-100" id="federal_unit" name="country" value="" >
-                <option value="">Escolha...</option>
-                <option value="AC">Acre</option>
-                <option value="AL">Alagoas</option>
-                <option value="AP">Amapá</option>
-                <option value="AM">Amazonas</option>
-                <option value="BA">Bahia</option>
-                <option value="CE">Ceará</option>
-                <option value="DF">Distrito Federal</option>
-                <option value="ES">Espírito Santo</option>
-                <option value="GO">Goiás</option>
-                <option value="MA">Maranhão</option>
-                <option value="MT">Mato Grosso</option>
-                <option value="MS">Mato Grosso do Sul</option>
-                <option value="MG">Minas Gerais</option>
-                <option value="PA">Pará</option>
-                <option value="PB">Paraíba</option>
-                <option value="PR">Paraná</option>
-                <option value="PE">Pernambuco</option>
-                <option value="PI">Piauí</option>
-                <option value="RJ">Rio de Janeiro</option>
-                <option value="RN">Rio Grande do Norte</option>
-                <option value="RS">Rio Grande do Sul</option>
-                <option value="RO">Rondônia</option>
-                <option value="RR">Roraima</option>
-                <option value="SC">Santa Catarina</option>
-                <option value="SP">São Paulo</option>
-                <option value="SE">Sergipe</option>
-                <option value="TO">Tocantins</option>
-            </select>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label for="city">Cidade </label>
-            <input type="text" class="form-control" id="city" name="city" placeholder="Ex: Aracaju" value="{{user.city}}">
-
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="neighborhood">Bairro </label>
-            <input type="text" class="form-control" id="neighborhood" name="address2" placeholder="Morumbi" value="{{user.neighborhood}}">
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-10 mb-9">
-            <label for="street_name">Nome da rua </label>
-            <input type="text" class="form-control" id="street_name" name="street_name" placeholder="Ex: Av. Lagos" value="{{user.street_name}}">
-
-        </div>
-        <div class="col-md-2 mb-3">
-            <label for="street_number">Numero da rua </label>
-            <input type="text" class="form-control" id="street_number" name="street_number" placeholder="Ex: 200" value="{{user.street_number}}">
-
-        </div>
-
-
-    </div>
-    <div class="row">
-    |
-        <div class="col-md-5 mb-5">
-            <label for="street_name">Telefone </label>
-            <input type="text" class="form-control" id="street_name" name="mobile_phone" placeholder="Ex: Av. Lagos" value="{{user.mobile_phone}}">
-        </div>
-        <div class="col-md-6 mb-6">
-            <label for="street_name">Telefone </label>
-            <input type="text" class="form-control" id="street_name" name="phone_regex" placeholder="Ex: Av. Lagos" value="{{user.phone_regex}}">
-        </div>
-    </div>
-    <div class="col-md-6 mb-6">
-        <label for="street_name">Telefone </label>
-        <textarea type="text" class="form-control" id="street_name" name="additional_information" placeholder="Informações adicionais" value="{{user.additional_information}}"></textarea>
-    </div>
-    
-    <hr class="mb-4">
-    <div class="row  justify-content-end">
-        <div class="col-3">
-            <button class="btn btn-primary btn-lg btn-block" id="updt_user_info" type="submit">Salvar dados</button>
-        </div>
-    </div>
-  </form> {% endcomment %}
-
 <script>
-
 $(document).ready(function(){
     $("#id_password").attr("type", "password"); 
     $("#id_cpf").attr("data-mask" , "000.000.000-00");
     $("#id_zip_code").attr("data-mask" , "00000-000");
     $("#id_date_of_birth").attr("data-mask" , "0000-00-00");
+    $("#id_mobile_phone").attr("data-mask" , "(00) 00000-0000");
+
+    /*$('#verifyAndSubmit').click(function(){
+        var formData = new FormData(document.querySelector('#userForms'));
+
+        var request = $.ajax({
+            url: "{{ request.scheme }}://{{ request.get_host }}",
+            method: "POST",
+            data: {data : formData},
+            dataType: "html"
+        });
+    });*/
+   
 });
 
 // jQuery Mask Plugin v1.14.16

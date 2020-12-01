@@ -43,6 +43,14 @@
 </form> {% endcomment %}
 {% comment %} {{form.errors}} {% endcomment %}
 
+{% if errors.has_errors == 1 %}
+    <br>
+    <div class="text-center">
+        <h2 class="text-muted">{{ errors.error.0 }}</h2>
+        <a class="btn btn-danger btn-lg" href="{%  url 'pages:Details' pet.id  %}"> Adote ele aqui </a>
+    </div>
+    <br>
+{% else %}
 <h3>{{ pet.name }} </h3>
 <form method="POST" action="{% url 'pets:EditPet' pet.id %}" enctype="multipart/form-data">
     <hr>
@@ -64,7 +72,7 @@
     <button type="submit"> Enviar </button>
 </form>
 </div>  
-
+{% endif %}
 <script>
 $(document).ready(function() {
     $("#id_name").addClass("input-field");
