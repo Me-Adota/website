@@ -6,7 +6,7 @@ class Pet(models.Model):
     PET_SEX = [('M', 'Macho'), ('F', 'Fêmea')]
 
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='pet_image', blank=False, null=False) 
+    image = models.ImageField(upload_to='pet_image', blank=False, null=False)
     name = models.CharField(max_length=30, blank=False, null=False)
     description = models.CharField(max_length=500, blank=False, null=False)
     birth_date = models.DateField(blank=False, null=False)
