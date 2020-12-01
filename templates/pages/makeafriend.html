@@ -7,7 +7,12 @@
 {% endblock page_styles%}
 
 {% block content %}
-
+    <h1>
+        <form method="get">
+            {{myFilter.form}}
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </h1>
 {% for pet in pets %}
     {% if pet.isAdopted == False %}
         Imagem : <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
@@ -29,4 +34,4 @@
     <hr>
 {% endfor %}
 
-{% endblock content %} 
+{% endblock content %}

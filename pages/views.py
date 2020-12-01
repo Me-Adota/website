@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from pets.models import Pet
 from users.models import User
+from pets.filters import *
 
 
 def aboutUs(request):
@@ -11,7 +12,12 @@ def infos(request):
 
 def makeafriend(request):
     pets = Pet.objects.all()
-    return render(request, 'pages/makeafriend.html', {'pets' : pets})
+
+    myFilter = PetFilter(request.GET, queryset = pets)
+
+    pets = myFilter.qs
+    # context{'pet':pet,'myFilter':myFilter}
+    return render(request, 'pages/makeafriend.html', {'pets' : pets, 'myFilter':myFilter})
 
 def HomeView(TemplateView):
     pets = Pet.objects.all()
