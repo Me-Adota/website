@@ -13,7 +13,7 @@
     Imagem : <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
     Nome : {{pet.name}}<br>
     Descrição: {{pet.description}}<br>
-    Data de nascimento: {{pet.birth_date}}<br>
+    Idade: {{pet.age}}<br>
     Tipo do pet: {{pet.type}}<br>
     Raça do pet: {{pet.breed}}<br>
     Tamanho do pet: {{pet.size}}<br>
@@ -25,6 +25,8 @@
     Status de adoção: {{pet.isAdopted}}<br>
     
     <a href="{% url 'pets:EditPet' pet.id %}"> Atualizar informacao </a> <br>
+
+    Adotado: {{ pet.isAdopted }}<br>
 
     <a href="{% url 'pets:adopted' pet.id %}"> Este pet foi adotado! :D </a>
     <hr>
