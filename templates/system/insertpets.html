@@ -9,7 +9,18 @@
 {% block content %}
 
 <h3>Cadastrar pet</h3>
-
+    {% if errors.has_errors == 1 %}
+        <div class="text-center" style="border:solid 1px; border-color:red; ">
+            {% for index, value in errors.error.items %}
+                <li>{{ value }} </li>
+            {% endfor %}
+            <br>
+            <div class="text-center">
+                <a class="btn btn-danger btn-round btn-sm" href="{% url 'users:userInfo' %}"> Completar cadastro </a> 
+            </div>
+            <br>
+        </div>
+    {% endif %}
     <form method="POST" action="{% url 'pets:insertPet' %}" enctype="multipart/form-data">
         <hr>
         {% csrf_token %} 
@@ -28,8 +39,7 @@
         Vermifugado: <br>{{ form.dewormed }}<br>
         Vulnerável: <br>{{ form.vulnerable }}<br>
 
-        <button type="submit"> Enviar </button>
-
+        <button type="submit" {% if errors.has_errors == 1 %} disabled {% endif %}> Enviar </button>
     </form>
 </div>  
 
