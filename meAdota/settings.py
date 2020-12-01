@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-SITE_ID = 1
+SITE_ID = 2
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -89,7 +89,8 @@ ROOT_URLCONF = 'meAdota.urls'
 
 ACCOUNT_FORMS = {
     'login': 'users.forms.MyLoginForm',
-    'signup': 'allauth.account.forms.SignupForm',
+    # 'signup': 'allauth.account.forms.SignupForm',
+    'signup': 'users.forms.MyCustomSignupForm',
     'add_email': 'allauth.account.forms.AddEmailForm',
     'change_password': 'allauth.account.forms.ChangePasswordForm',
     'set_password': 'allauth.account.forms.SetPasswordForm',
