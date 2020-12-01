@@ -35,9 +35,9 @@ def petDetails(request,id):
     user = User.objects.get(id=pet.user_id)
     user.save()
     try:
-        user.mobile_phone = user.mobile_phone.replace('-','').replace('+','')
+        user.mobile_phone = user.mobile_phone.replace('-','').replace('+','') 
     except:
         pass
-
+    
     return render(request, 'pages/petDetails.html', {'pet':pet, 'user':user, 'logged':logged})
 

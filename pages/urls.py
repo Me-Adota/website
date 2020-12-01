@@ -7,6 +7,7 @@ urlpatterns = [
     path('aboutus', views.aboutUs, name="aboutUs"),
     path('informations', views.infos, name="infos"),
     path('home', views.HomeView, name = "home"),
-    path('makeafriend', views.makeafriend, name = 'makeafriend'),
+    path('makeafriend', views.makeafriend, name = 'makeafriend'),    
     path('details/<int:id>', views.petDetails, name="Details"),
 ]
+
