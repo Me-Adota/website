@@ -14,7 +14,7 @@ def insertPets(request):
     if(user.cpf == '' or user.full_name == '' or user.mobile_phone == '' or user.zip_code == ''):
         errors = { 'has_errors' : 1 } 
         errors['error'] = {}
-        errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você complete seu cadastro!'})
+        errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você complete seu cadastro com telefone, cpf, nome e CEP!'})
 
 
     if request.method == 'POST' and errors['has_errors'] == 0: 

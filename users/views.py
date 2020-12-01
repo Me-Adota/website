@@ -53,7 +53,9 @@ def PersonalProfile(request):
                 user.cpf = str(data['cpf'])
                 user.address1 = str(data['address1'])
                 user.address2 = str(data['address2'])
-                user.date_of_birth = str(data['date_of_birth'])
+                if(str(data['date_of_birth']) != ''):
+                    
+                    user.date_of_birth = str(data['date_of_birth'])
                 user.zip_code = str(data['zip_code'])
                 user.city = str(data['city'])
                 user.country = str(data['country'])
@@ -63,13 +65,17 @@ def PersonalProfile(request):
 
                 redirect('system/personal.html')
         except:
+            print("----------ERRROR-------------")
             print(traceback.format_exc())
-            return render(request, 'redirect_404.html', {})
+            return redirect('system/personal')
+
     return render(request, 'system/personal.html', {'user':user , 'form':form, 'errors' : errors})
 
 def validate_fields(data, errors):
     errors['has_errors'] = 0
+    errors['error'] = {}
     index = 0 
+
 
     if('cpf' in data and data['cpf'] != ''):
         cpf = CPF()
