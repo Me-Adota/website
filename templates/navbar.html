@@ -31,32 +31,38 @@
                     <a class="nav-link my-auto mr-3 hvr-underline-from-center" href="{% url 'pages:aboutUs' %}">Sobre Nós</a>
                     <a class="nav-link my-auto mr-5 hvr-underline-from-center" href="{% url 'pages:infos' %}">Informações</a>
                     <a href="{% url 'pages:makeafriend' %}">
-                        <button class="btn btn-danger btn-rounded px-4 mr-2">
+                        <button class="btn btn-danger btn-rounded px-4 mr-2 h-100">
                             Faça um amigo <i class="fas pl-2 fa-heart"></i>
                         </button>
                     </a>
 
                     {% if user.is_authenticated %}
                         <div class="dropdown show">
-                            <a class="nav-link my-auto btn btn-success btn-rounded px-4 text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-user"></i> {{user.full_name}}
+                            <a class="nav-link my-auto btn btn-success btn-rounded px-4 text-white dropdown-toggle h-100" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                
+                                {% if user.full_name is not None %}
+                                    <i class="far fa-user"></i> {{user.full_name}}
+                                {% else %}
+                                    <i class="far fa-user"></i> Minha Conta
+                                {% endif %}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
+                            <div class="dropdown-menu dropdown-menu-right w-100" aria-labelledby="dropdownMenuLink">
                                 {% if request.user.is_authenticated %}
-                                    <a class="dropdown-item" href="{% url 'pets:insertPet' %}">Cadastrar Pet</a>
-                                    <a class="dropdown-item" href="{% url 'pets:mypets' %}">Registrados</a>
+                                    <a class="dropdown-item" href="{% url 'pets:insertPet' %}"><i class="fas fa-plus-circle pr-1"></i> Cadastrar Pet</a>
+                                    <a class="dropdown-item" href="{% url 'pets:mypets' %}"><i class="fas fa-paw pr-1"></i> Meus Pets</a>
                                     {% comment %} <a class="dropdown-item" href="#">Adotar</a>
                                     <a class="dropdown-item" href="#">Registrados</a>
                                     <a class="dropdown-item" href="#">Adquiridos</a>
                                     <a class="dropdown-item" href="#">Status de adoção</a> {% endcomment %}
-                                    <a class="dropdown-item" href="{% url 'users:userInfo' %}">Minha conta</a>
+                                    <a class="dropdown-item" href="{% url 'users:userInfo' %}"><i class="fas fa-user-edit"></i> Configurações</a>
+                                    
+
                                 {% endif %}
 
                                 <div class="dropdown-divider"></div>
                                 {% if request.user.is_authenticated %}
-                                    <a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                                    <a class="dropdown-item pl-5" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt pr-1"></i> Sair</a>
                                 {% endif %}
                             </div>
                         </div>
