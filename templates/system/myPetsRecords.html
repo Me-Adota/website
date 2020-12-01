@@ -1,37 +1,56 @@
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 {% extends 'base.html' %}
 {% load static %}
 
 {% block page_styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 {% endblock page_styles%}
 
 {% block content %}
-<h1> Meus pets registrados </h1>
-{% for pet in pets %}
-    <a href="{% url 'pets:deletePet' pet.id %}"> Deletar </a>
-    Imagem : <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
-    Nome : {{pet.name}}<br>
-    Descrição: {{pet.description}}<br>
-    Idade: {{pet.age}}<br>
-    Tipo do pet: {{pet.type}}<br>
-    Raça do pet: {{pet.breed}}<br>
-    Tamanho do pet: {{pet.size}}<br>
-    Sexo do pet: {{pet.sex}}<br>
-    Vacinado: {{pet.vaccinated}}<br>
-    Castrado: {{pet.castrated}}<br>
-    Tamanho: {{pet.dewormed}}<br>
-    Vulnerável: {{pet.vulnerable}}<br>
-    Status de adoção: {{pet.isAdopted}}<br>
-    
-    <a href="{% url 'pets:EditPet' pet.id %}"> Atualizar informacao </a> <br>
 
-    Adotado: {{ pet.isAdopted }}<br>
+<header class="default-header-1 py-5">
+    <div class="container bg-white text-dark py-5" style="border-radius: 40px;">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>Meus pets</h1>
+                <br>
+                <h1>
+                    <span class="badge badge-info w-100">PARA ADOÇÃO</span>
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                
+                {% for pet in pets %}
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}">
+                        <div class="card-body">
+                        <h5 class="card-title">{{pet.name}}</h5>
+                        <p class="card-text">{{pet.description}}</p>
+                        <br>
 
-    <a href="{% url 'pets:adopted' pet.id %}"> Este pet foi adotado! :D </a>
-    <hr>
-{% endfor %}
-
-
+                        <a href="#" class="btn btn-primary w-100">Ver mais</a>
+                        </div>
+                    </div>
+                    <a href="{% url 'pets:deletePet' pet.id %}"> Deletar </a>
+                    Data de nascimento: {{pet.birth_date}}<br>
+                    Tipo do pet: {{pet.type}}<br>
+                    Raça do pet: {{pet.breed}}<br>
+                    Tamanho do pet: {{pet.size}}<br>
+                    Sexo do pet: {{pet.sex}}<br>
+                    Vacinado: {{pet.vaccinated}}<br>
+                    Castrado: {{pet.castrated}}<br>
+                    Tamanho: {{pet.dewormed}}<br>
+                    Vulnerável: {{pet.vulnerable}}<br>
+                    Adotado: {{ pet.isAdopted }}<br>
+                    <a href="{% url 'pets:EditPet' pet.id %}"> Atualizar informacao </a>
+                    <hr>
+                    <a href="{% url 'pets:adopted' pet.id %}"> Este pet foi adotado! :D </a>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</header>
 
 {% endblock content %}
