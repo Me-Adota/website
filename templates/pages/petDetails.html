@@ -7,8 +7,6 @@
 
 
 {% block content %}
-
-
 <br>
 <img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
 Foto do Pet:<br>{{ pet.image }}<br>
@@ -23,8 +21,16 @@ Vacinado: <br>{{ pet.vaccinated }}<br>
 Castrado: <br>{{ pet.castrated }}<br>
 Vermifugado: <br>{{ pet.dewormed }}<br>
 Vulnerável: <br>{{ pet.vulnerable }}<br>
+
+
+<div style="border:solid 1px">
+{% if logged == True %}
+    {{ user.mobile_phone }}
+    <a target="_blank" href="https://wa.me/55{{ user.mobile_phone }}?text=Ol%C3%A1%20{{user.name}}%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pet%20{{pet.name}}%2C%20voc%C3%AA%20poderia%20me%20ajudar%3F"> Saber mais </a>
+{% else %}
+    {{ user.mobile_phone|slice:"0:4" }}
+    <a target="_blank" href="{{ request.scheme }}://{{ request.get_host }}/accounts/login"> Saber mais </a>
+{% endif %}
+</div>
 <hr>
-<textarea rows="10" placeholder="Escreva aqui um texto contando o por que você gostaria de abrigar o !{{pet.name}}, com detalhes sobre você e o ambiente que o pet ficará com você"></textarea>
-<hr>
-<button> Solicitar pet </button>
 {% endblock content %}
