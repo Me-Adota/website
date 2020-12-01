@@ -8,5 +8,5 @@ urlpatterns = [
     path('informations', views.infos, name="infos"),
     path('home', views.HomeView, name = "home"),
     path('makeafriend', views.makeafriend, name = 'makeafriend'),    
-    path('/details/<int:id>', views.petDetails, name="Details"),
+    path('details/<int:id>', views.petDetails, name="Details"),
 ]
