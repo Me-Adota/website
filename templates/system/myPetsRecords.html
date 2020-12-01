@@ -7,25 +7,53 @@
 {% endblock page_styles%}
 
 {% block content %}
-<h1> Meus pets registrados </h1>
-{% for pet in pets %}
-    <a href="{% url 'pets:deletePet' pet.id %}"> Deletar </a>
-    Imagem : <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
-    Nome : {{pet.name}}<br>
-    Descrição: {{pet.description}}<br>
-    Data de nascimento: {{pet.birth_date}}<br>
-    Tipo do pet: {{pet.type}}<br>
-    Raça do pet: {{pet.breed}}<br>
-    Tamanho do pet: {{pet.size}}<br>
-    Sexo do pet: {{pet.sex}}<br>
-    Vacinado: {{pet.vaccinated}}<br>
-    Castrado: {{pet.castrated}}<br>
-    Tamanho: {{pet.dewormed}}<br>
-    Vulnerável: {{pet.vulnerable}}<br>
-    <a href="{% url 'pets:EditPet' pet.id %}"> Atualizar informacao </a>
 
-    <hr>
-{% endfor %}
+<header class="default-header-1 py-5">
+    <div class="container bg-white text-dark py-5" style="border-radius: 40px;">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>Meus pets</h1>
+                <br>
+                <h1>
+                    <span class="badge badge-info w-100">PARA ADOÇÃO</span>
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                
+                {% for pet in pets %}
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}">
+                        <div class="card-body">
+                        <h5 class="card-title">{{pet.name}}</h5>
+                        <p class="card-text">{{pet.description}}</p>
+                        <br>
+
+                        <a href="#" class="btn btn-primary w-100">Ver mais</a>
+                        </div>
+                    </div>
+                    <a href="{% url 'pets:deletePet' pet.id %}"> Deletar </a>
+                    Imagem : <br>
+                    
+                    Descrição: <br>
+                    Data de nascimento: {{pet.birth_date}}<br>
+                    Tipo do pet: {{pet.type}}<br>
+                    Raça do pet: {{pet.breed}}<br>
+                    Tamanho do pet: {{pet.size}}<br>
+                    Sexo do pet: {{pet.sex}}<br>
+                    Vacinado: {{pet.vaccinated}}<br>
+                    Castrado: {{pet.castrated}}<br>
+                    Tamanho: {{pet.dewormed}}<br>
+                    Vulnerável: {{pet.vulnerable}}<br>
+                    <a href="{% url 'pets:EditPet' pet.id %}"> Atualizar informacao </a>
+
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</header>
 
 
 
