@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_countries',
     'cpf_field',
+    'django_filters',
     # AllAuth [custom providers]
     'allauth.socialaccount.providers.facebook',
     #my apps
