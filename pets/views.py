@@ -2,6 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Pet
 from .forms import PetForm
+from users.models import User
 
 def All(request):
     if not request.user.is_authenticated:
@@ -14,15 +15,15 @@ def All(request):
 
 def insertPets(request):
 
-    if request.method == 'POST': 
-        form = PetForm(request.POST, request.FILES) 
-        if form.is_valid(): 
+    if request.method == 'POST':
+        form = PetForm(request.POST, request.FILES)
+        if form.is_valid():
             form.instance.user_id = request.user.id
-            form.save() 
-            return redirect('/system/pets/my') 
-    else: 
-        form = PetForm() 
-    return render(request, 'system/insertpets.html', {'form' : form}) 
+            form.save()
+            return redirect('/system/pets/my')
+    else:
+        form = PetForm()
+    return render(request, 'system/insertpets.html', {'form' : form})
 
 #get pets by logged user
 def userPets(request):
@@ -49,7 +50,7 @@ def editPet(request,id):
 
     if request.method == 'POST':
         form = PetForm(request.POST,request.FILES, instance=pet)
-        form.save() 
+        form.save()
         return redirect('/system/pets/my' , flag='success')
 
     return render(request, 'system/editPet.html', {'pet':pet, 'alert':alert , 'form':form})
@@ -58,6 +59,6 @@ def petDelete(request, id):
     Pet.objects.filter(id=id).delete()
     return redirect('/system/pets/my')
 
-def success(request): 
-    return HttpResponse('successfully uploaded') 
+def success(request):
+    return HttpResponse('successfully uploaded')
 
