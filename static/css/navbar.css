@@ -16,3 +16,9 @@
 .navbar .btn-success {
     min-width: 170px !important;
 }
+
+@media screen and (max-width: 992px){
+    .CMQ{
+        width: 100% !important;
+    }
+}

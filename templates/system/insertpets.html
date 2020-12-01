@@ -18,6 +18,22 @@
         </div>
         <div class="row">
             <div class="col-12">
+            {% if errors.has_errors == 1 %}
+                <div class="text-center" style="border:solid 1px; border-color:red; ">
+                    {% for index, value in errors.error.items %}
+                        <li>{{ value }} </li>
+                    {% endfor %}
+                    <br>
+                    <div class="text-center">
+                        <a class="btn btn-danger btn-round btn-sm" href="{% url 'users:userInfo' %}"> Completar cadastro </a> 
+                    </div>
+                    <br>
+                </div>
+            {% endif %}  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <form method="POST" action="{% url 'pets:insertPet' %}" enctype="multipart/form-data">
                     {% csrf_token %} 
                     {{form.error}}<br>
@@ -31,7 +47,7 @@
                             Foto do Pet:<br>{{ form.image }}<br><br>
                             Nome: <br>{{ form.name }} <br>
                             Descrição: <br>{{ form.description }} <br>
-                            Data de nascimento: (YYYY/MM/DD)<br>{{ form.birth_date }}<br>
+                            Idade:<br>{{ form.age }}<br>
                             Tipo do pet: <br>{{ form.pet_type }}<br>
                             Raça: <br>{{ form.breed }}<br>
                             Tamanho: <br>{{ form.size }}<br>
@@ -53,7 +69,7 @@
                                 <strong class="">Vulnerável?</strong><br>
                             </div>
 
-                            <button class="mt-auto btn btn-primary btn-lg w-100 mb-3" type="submit"> Cadastrar </button>
+                            <button class="mt-auto btn btn-primary btn-lg w-100 mb-3" type="submit" {% if errors.has_errors == 1 %} disabled {% endif %}> Cadastrar </button>
                         </div>
                     </div>
             
@@ -63,21 +79,17 @@
     </div>
 </header>
 
-
-
 <script>
 
 $(document).ready(function() {
     $("#id_name").addClass("input-field");
-    $("#id_description").addClass("");
 
+    $("#id_description").addClass("");
     $("#saude input").addClass("d-inline")
     $("#info input[type=text]").addClass("w-100 form-control");
     $("#info select").addClass("w-100 form-control");
-    $("#id_birth_date").attr("data-mask" , "0000-00-00");
-    $("#id_birth_date").attr("placeholder" , "1998-25-03",);
-
 })
+  
 // jQuery Mask Plugin v1.14.16
 // github.com/igorescobar/jQuery-Mask-Plugin
 $(document).ready(function(){
