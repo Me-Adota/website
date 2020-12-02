@@ -2,11 +2,37 @@
 
 {% load i18n %}
 
+{% load static %}
+
+{% block page_styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/verification_sent.css' %}">
+{% endblock page_styles%}
+
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Verify Your E-mail Address" %}</h1>
 
-    <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+<div id="loading-box">
+    <div class="container h-100 text-center">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                <img class="img-fluid loading-dog" src="{% static 'img/common/loading_1.gif' %}" alt="">
+                <br>
+                <img class="img-fluid loading-gif" src="{% static 'img/common/loading_2.gif' %}" alt="">
+            </div>
+        </div>
+    </div>
+  </div>
+
+<header>
+    <div class="container">
+        <div class="row py-5 justify-left">
+            <div class="col-10 py-5 px-4">
+                <h3>Verifique seu endereço de e-mail</h3>
+                <p class="pt-3">Enviamos uma verificação de e-mail. Acesse o link fornecido para finalizar o processo de registro. Contate-nos através do email meadota.suporte@gmail.com se não receber a verificação dentro de alguns minutos. </p>
+            </div>
+        </div>
+    </div>
+</header>
 
 {% endblock %}
