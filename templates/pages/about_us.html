@@ -7,8 +7,45 @@
 {% endblock page_styles%}
 
 {% block content %}
+<div id="loading-box">
+    <div class="container h-100 text-center">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                <img class="img-fluid loading-dog" src="{% static 'img/common/loading_1.gif' %}" alt="">
+                <br>
+                <img class="img-fluid loading-gif" src="{% static 'img/common/loading_2.gif' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
 
-<h1>About us funciona! </h1>
+<section style="background-color: #f7fafb;">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-6 text-center white-box py-5">
+                <h5><strong>Sobre o Me Adota:</strong></h5>
+                <br>
+                <div class="text-justify px-3">
+                    <p>
+                        Você pode encontrar ao final de cada página em nosso site (incluindo essa!)
+                        um breve resumo sobre <u>nosso objetivo</u>, basta rolar para baixo. Além disso, lá também encontrará links para nossas redes sociais.
+                        <br><br>
+                        Mas o resumo <em>completo</em> do nosso projeto está presente na <strong><a href="" target="_blank">nossa documentação</a></strong>.
+                        <br><br>
+                        No tópico <em>Início</em>, estão disponíveis todas as informações sobre como surgimos e com quais objetivos,
+                        as tecnologias que utilizamos durante o desenvolvimento do produto e
+                        o link para o nosso código fonte (repositório).
+                        <br>
+
+                        <div class="text-center">
+                            <h3><strong>...</strong></h3>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 {% endblock content %}
