@@ -25,13 +25,13 @@
 
 {% user_display confirmation.email_address.user as user_display %}
 
-<p class="pt-3">{% blocktrans with confirmation.email_address.email as email %}Por favor confirme se o e-mail <a href="mailto:{{ email }}">{{ email }}</a> pertence ao usuário: {{ user_display }}.{% endblocktrans %}</p>
+<p class="pt-3">{% blocktrans with confirmation.email_address.email as email %}Clique no botão abaixo para confirmar o registro da conta relacionada ao e-mail <a href="mailto:{{ email }}">{{ email }}</a>.{% endblocktrans %}</p>
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
 {% csrf_token %}
 <div class="row">
     <div class="col-2">
-        <button class="btn btn-primary btn-rounded btn-lg w-100" type="submit">{% trans 'Confirm' %}</button>
+        <button class="btn btn-primary btn-rounded btn-lg w-100" type="submit">{% trans 'Confirmar' %}</button>
     </div>
 </div>
     
