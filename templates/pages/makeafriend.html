@@ -7,13 +7,18 @@
 {% endblock page_styles%}
 
 {% block content %}
-
+    <h1>
+        <form method="get">
+            {{myFilter.form}}
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </h1>
 {% for pet in pets %}
     {% if pet.isAdopted == False %}
         Imagem : <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
         Nome : {{pet.name}}<br>
         Descrição: {{pet.description}}<br>
-        Data de nascimento: {{pet.birth_date}}<br>
+        Idade: {{pet.age}}<br>
         Tipo do pet: {{pet.type}}<br>
         Raça do pet: {{pet.breed}}<br>
         Tamanho do pet: {{pet.size}}<br>
@@ -23,9 +28,10 @@
         Tamanho: {{pet.dewormed}}<br>
         Vulnerável: {{pet.vulnerable}}<br>
         Adotado: {{pet.isAdopted}}<br>
+        <a href="{%  url 'pages:Details' pet.id  %}" class="">Ver mais</a>
     {% endif %}
 
     <hr>
 {% endfor %}
 
-{% endblock content %} 
+{% endblock content %}
