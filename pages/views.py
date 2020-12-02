@@ -23,7 +23,12 @@ def HomeView(TemplateView):
     pets = Pet.objects.all()
     pets = pets.filter(isAdopted = False)[:6]
 
-    return render(TemplateView, "pages/index.html",  {'pets' : pets})
+    qtd_pets = Pet.objects.filter(isAdopted=False).count()
+    qtd_adopted = Pet.objects.filter(isAdopted=True).count()
+    qtd_vulnerable = Pet.objects.filter(vulnerable=True, isAdopted=False).count()
+    qtd_users = User.objects.all().count()
+
+    return render(TemplateView, "pages/index.html",  {'pets' : pets, 'qtd_vulnerable':qtd_vulnerable, 'qtd_pets':qtd_pets, 'qtd_adopted':qtd_adopted, 'qtd_users':qtd_users})
 
 def petDetails(request,id):
     logged = True
