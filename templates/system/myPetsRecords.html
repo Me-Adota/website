@@ -1,37 +1,91 @@
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 {% extends 'base.html' %}
 {% load static %}
 
 {% block page_styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 {% endblock page_styles%}
 
 {% block content %}
-<h1> Meus pets registrados </h1>
-{% for pet in pets %}
-    <a href="{% url 'pets:deletePet' pet.id %}"> Deletar </a>
-    Imagem : <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
-    Nome : {{pet.name}}<br>
-    Descrição: {{pet.description}}<br>
-    Idade: {{pet.age}}<br>
-    Tipo do pet: {{pet.type}}<br>
-    Raça do pet: {{pet.breed}}<br>
-    Tamanho do pet: {{pet.size}}<br>
-    Sexo do pet: {{pet.sex}}<br>
-    Vacinado: {{pet.vaccinated}}<br>
-    Castrado: {{pet.castrated}}<br>
-    Tamanho: {{pet.dewormed}}<br>
-    Vulnerável: {{pet.vulnerable}}<br>
-    Status de adoção: {{pet.isAdopted}}<br>
-    
-    <a href="{% url 'pets:EditPet' pet.id %}"> Atualizar informacao </a> <br>
 
-    Adotado: {{ pet.isAdopted }}<br>
+<header class="default-header-1 py-5">
+    <div class="container bg-white text-dark py-5" style="border-radius: 40px;">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>Meus pets</h1>
+                <br>
+                <h1>
+                    <span class="badge badge-info w-100">PARA ADOÇÃO</span>
+                </h1>
+                <br>
+                <br>
+                <h5>Atenção! Marque seu pet como ADOTADO assim que ele for adotado ;)</h5>
 
-    <a href="{% url 'pets:adopted' pet.id %}"> Este pet foi adotado! :D </a>
-    <hr>
-{% endfor %}
+            </div>
+        </div>
+        <div class="row">
+                
+                {% for pet in pets %}
+                    <div class="col-12 col-md-4 my-3">
+                            <div class="card h-100 text-dark">
+                                <img class="card-img-top" alt="No image" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}">
+                                <div class="card-body">
+                                <h5 class="card-title">
+                                <small>Nome: </small>
+                                <strong>{{pet.name}}</strong>
+                                </h5>
+                                <p class="card-text">
+                                <div class="text-truncate" style="height: 30px;">
+                                    <small>Descrição: </small>
+                                    {{pet.description}}
+                                </div>
+                                <hr>
+                                <span class="badge badge-info">
+                                {% if pet.sex == 'M'%}
+                                    Macho
+                                {% else %}
+                                    Fêmea
+                                {% endif %}
+                                </span>
+                                <span class="badge badge-info">
+                                {% if pet.size == 'P'%}
+                                    Pequeno
+                                {% elif pet.size == 'M'%}
+                                    Médio
+                                {% else %}
+                                    Grande
+                                {% endif %}
+                                </span>
 
+                                {% if pet.vaccinated %}
+                                    <span class="badge badge-success">Vacinado</span>
+                                {% endif %}
+                                    
+                                {% if pet.castrated %}
+                                    <span class="badge badge-success">Castrado</span>
+                                {% endif %}
+                                    
+                                {% if pet.dewormed %}
+                                    <span class="badge badge-success">Vermifugado</span>
+                                {% endif %}
 
+                                {% if pet.vulnerable %}
+                                    <span class="badge badge-danger">Vulnerável</span>
+                                {% endif %}
+                        
+
+                                </span>
+                                </p>
+                                    <a href="{%  url 'pages:Details' pet.id  %}" class="mb-auto btn btn-info btn-rounded w-100 btn-lg btn-cards">+ Informações</a>
+                                
+                                    <div class="text-center">
+                                        <a class="mt-5 w-100 mx-auto" href="{% url 'pets:adopted' pet.id %}"> Marcar como adotado </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                {% endfor %}
+        </div>
+    </div>
+</header>
 
 {% endblock content %}

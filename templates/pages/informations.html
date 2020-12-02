@@ -7,5 +7,52 @@
 
 {% block content %}
 
-<h1>Informations funciona!</h1>
+<div id="loading-box">
+    <div class="container h-100 text-center">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                <img class="img-fluid loading-dog" src="{% static 'img/common/loading_1.gif' %}" alt="">
+                <br>
+                <img class="img-fluid loading-gif" src="{% static 'img/common/loading_2.gif' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<section style="background-color: #f7fafb;">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-6 text-center white-box py-5">
+                <h5><strong>Informações sobre nossos dados:</strong></h5>
+                <br>
+                <div class="text-justify px-3">
+                    <p>
+                        Um dos nossos objetivos, como projeto livre e sem fins lucrativos, é disponibilizar transparentemente alguns de nossos dados, adquiridos através do nosso site, sobre a
+                        adoção de animais de estimação.
+                        <br><br>
+                        O motivo é simples: <u>desejamos contribuir para futuras pesquisas sobre o cenário de adoção de animais 
+                        no Brasil e no mundo</u>. Em razão disso, disponibilizamos na nossa <a href="{% url 'pages:home'%}">home page</a> e aqui dados relacionados:
+                        <br><br>
+                        <mark>*<em>importante</em>: aqui também serão publicados análises períodicas baseadas em nosso banco de dados, assim que obtivermos um número maior de usuários e pets regitrados.</mark>
+                        <br><br>
+                        
+                        <strong>Informações Básicas:</strong>
+                        
+                        <ul>
+                            <li>Quantidade de animais vulneráveis registrados: <strong>{{qtd_vulnerable}}</strong></li>
+                            <li>Quantidade de animais buscando por um lar: <strong>{{qtd_pets}}</strong></li>
+                            <li>Quantidade de animais já adotados: <strong>{{qtd_adopted}}</strong></li>
+                            <li>Quantidade de usuários registrados (lares disponíveis): <strong>{{qtd_users}}</strong></li>
+                        </ul>
+
+                        <div class="text-center">
+                            <h3><strong>...</strong></h3>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock content %}

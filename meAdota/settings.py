@@ -52,8 +52,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_countries',
     'cpf_field',
+    'django_filters',
     # AllAuth [custom providers]
     'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
     #my apps
     'users',
     'pets',
@@ -89,7 +92,8 @@ ROOT_URLCONF = 'meAdota.urls'
 
 ACCOUNT_FORMS = {
     'login': 'users.forms.MyLoginForm',
-    'signup': 'allauth.account.forms.SignupForm',
+    # 'signup': 'allauth.account.forms.SignupForm',
+    'signup': 'users.forms.MyCustomSignupForm',
     'add_email': 'allauth.account.forms.AddEmailForm',
     'change_password': 'allauth.account.forms.ChangePasswordForm',
     'set_password': 'allauth.account.forms.SetPasswordForm',
@@ -119,6 +123,15 @@ SOCIALACCOUNT_PROVIDERS = {
         'LOCALE_FUNC': lambda request: 'en_US',
         'VERIFIED_EMAIL': False,
         'VERSION': 'v7.0',
+    },
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
     }
 }
 

@@ -4,6 +4,16 @@ from .models import Pet
 from .forms import PetForm
 from users.models import User
 
+
+def All(request):
+    if not request.user.is_authenticated:
+        print("This is a not logged user bro:")
+        return redirect('/accounts/login/')
+    else:
+        print("successfully logged")
+    user = User.objects.all()
+    return render(request, 'system/personal.html', {"user" : user})
+
 def insertPets(request):
     user = User.objects.get(pk=request.user.id)
     user.save()
@@ -15,7 +25,6 @@ def insertPets(request):
         errors = { 'has_errors' : 1 } 
         errors['error'] = {}
         errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você complete seu cadastro com telefone, cpf, nome e CEP!'})
-
 
     if request.method == 'POST' and errors['has_errors'] == 0: 
         form = PetForm(request.POST, request.FILES) 
@@ -63,7 +72,7 @@ def editPet(request,id):
     
     if request.method == 'POST':
         form = PetForm(request.POST,request.FILES, instance=pet)
-        form.save() 
+        form.save()
         return redirect('/system/pets/my' , flag='success')
 
     return render(request, 'system/editPet.html', {'pet':pet, 'errors':errors , 'form':form})
@@ -86,4 +95,3 @@ def adopted(request,id):
 
 def success(request): 
     return HttpResponse('successfully uploaded') 
-

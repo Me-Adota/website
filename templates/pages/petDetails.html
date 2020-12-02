@@ -2,35 +2,210 @@
 {% load static %}
 
 {% block page_styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    
 {% endblock page_styles%}
 
 
 {% block content %}
-<br>
-<img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
-Foto do Pet:<br>{{ pet.image }}<br>
-Nome: <br>{{ pet.name }} <br>
-Descrição: <br>{{ pet.description }} <br>
-Idade:<br>{{ pet.age }}<br>
-Tipo do pet: <br>{{ pet.pet_type }}<br>
-Raça: <br>{{ pet.breed }}<br>
-Tamanho: <br>{{ pet.size }}<br>
-Sexo: <br>{{ pet.sex }}<br>
-Vacinado: <br>{{ pet.vaccinated }}<br>
-Castrado: <br>{{ pet.castrated }}<br>
-Vermifugado: <br>{{ pet.dewormed }}<br>
-Vulnerável: <br>{{ pet.vulnerable }}<br>
+<header class="default-header-1">    
+    <div class="container py-5">
+        <div class="row white-box text-dark">
+            <div class="col-12 col-md-6 py-5 text-center">
+                <img class="img-fluid img-thumbnail" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}">
+            </div>
+            <div class="col-12 col-md-6  py-5">
+                <h5><span class="badge badge-success w-100"><i class="fas fa-check-circle"></i> DISPONÍVEL PARA ADOÇÃO!</span></h5>
+                <h5><small>Nome: </small></h5>
+                <h5><strong>{{ pet.name }}</strong></h5><br>
+                <h5><small>Descrição: </small></h5>
+                <h5><strong>{{ pet.description }}</strong></h5><br>
 
+                <div class="row">
+                    <div class="col-6">
+                        Idade:
+                    </div>
+                    <div class="col-6">
+                        <strong>{{ pet.age }} anos.</strong>
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Tipo do pet:
+                    </div>
+                    <div class="col-6">
+                        <strong>{{ pet.pet_type }}</strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Raça do pet:
+                    </div>
+                    <div class="col-6">
+                        <strong>{{ pet.breed }}</strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Tamanho do pet:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.size == 'P'%}
+                                Pequeno
+                            {% elif pet.size == 'M'%}
+                                Médio
+                            {% else %}
+                                Grande
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Sexo do pet:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.sex == 'M'%}
+                                Macho
+                            {% else %}
+                                Fêmea
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Vacinado:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.vaccinated %}
+                                Sim
+                            {% else %}
+                                Não
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Castrado:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.castrated %}
+                                Sim
+                            {% else %}
+                                Não
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Vermifugado:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.dewormed %}
+                                Sim
+                            {% else %}
+                                Não
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Vulnerável:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.vulnerable %}
+                                Sim
+                            {% else %}
+                                Não
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div style="border:solid 1px">
-{% if logged == True %}
-    {{ user.mobile_phone }}
-    <a target="_blank" href="https://wa.me/55{{ user.mobile_phone }}?text=Ol%C3%A1%20{{user.name}}%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20pet%20{{pet.name}}%2C%20voc%C3%AA%20poderia%20me%20ajudar%3F"> Saber mais </a>
-{% else %}
-    {{ user.mobile_phone|slice:"0:4" }}
-    <a target="_blank" href="{{ request.scheme }}://{{ request.get_host }}/accounts/login"> Saber mais </a>
-{% endif %}
-</div>
-<hr>
+        <div class="row my-5 white-box">
+            <div class="col-12 py-5 text-dark">
+                <div class="text-center">
+                    <h5><strong>Gostou? Entre em contato para adotar!</strong></h5>
+                </div>
+                <br>
+                <div class="row mx-auto" style="max-width: 500px;">
+                    <div class="col-6">
+                        Telefone:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if logged == True %}
+                                {{ user.mobile_phone }}
+                            {% else %}
+                            {{ user.mobile_phone|slice:"0:4" }}...
+                                <a target="_blank" href="{{ request.scheme }}://{{ request.get_host }}/accounts/login"> Saber mais </a>
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row mx-auto" style="max-width: 500px;">
+                    <div class="col-6">
+                        Email:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if logged == True %}
+                                xxx@xx.com
+                            {% else %}
+                            {{ user.mobile_phone|slice:"0:4" }}...
+                            xxx@xx.com
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+
 {% endblock content %}

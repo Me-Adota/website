@@ -24,9 +24,18 @@
 
 
 
+header.default-header-1 {
+    background: url(../img/common/paws_texture.jpg);
+    background-size: 340px;
+    background-repeat: repeat;
+    box-shadow: inset 0 0 0 100vmax rgba(0, 41, 79, 0.15);
+}
 
-
-
+.white-box {
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .25);
+    border-radius: 20px;
+}
 
 
 
