@@ -28,7 +28,7 @@ def makeafriend(request):
 
 def HomeView(TemplateView):
     pets = Pet.objects.all()
-    pets = pets.filter(isAdopted = False)[:6]
+    pets = pets.filter(isAdopted = False).order_by('vulnerable').reverse()[:6]
 
     qtd_pets = Pet.objects.filter(isAdopted=False).count()
     qtd_adopted = Pet.objects.filter(isAdopted=True).count()
