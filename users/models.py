@@ -60,7 +60,7 @@ class User(AbstractBaseUser):
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
     timestamp   = models.DateTimeField(auto_now_add=True)
-    cpf = CPFField('cpf', null= True)
+    cpf = CPFField('cpf', null= True,  blank=True)
     date_of_birth = models.DateField(verbose_name=_("Date of birth"), blank=True, null=True)
     address1 = models.CharField(verbose_name=_("Address line 1"), max_length=1024, blank=True, null=True)
     address2 = models.CharField(verbose_name=_("Address line 2"), max_length=1024, blank=True, null=True)

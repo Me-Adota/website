@@ -25,6 +25,13 @@
             <div class="col-12 text-center">
                 <h1>Meus pets</h1>
                 <br>
+                {% if "update" in  request.GET %}
+                        <br>
+                        <div class="alert alert-success" role="alert">
+                            <li> Dados alterados com sucessos </li>
+                        </div>
+                        <hr>
+                {% endif %}
                 <h1>
                     <span class="badge badge-info w-100">PARA ADOÇÃO</span>
                 </h1>

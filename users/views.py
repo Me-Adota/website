@@ -26,11 +26,15 @@ def PersonalProfile(request):
     errors = {}
     errors = { 'has_errors' : 0 } 
 
-
-    if(user.cpf == '' or user.full_name == '' or user.mobile_phone == '' or user.zip_code == ''):
+    if(user.cpf == '' or user.full_name == '' or user.mobile_phone == '' ):
         errors = { 'has_errors' : 1 } 
         errors['error'] = {}
-        errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você complete seu cadastro com telefone, cpf, nome e CEP!'})
+        if(user.cpf == ''):
+            errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu CPF'})
+        if(user.full_name == ''):
+            errors['error'].update({ 1 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu nome!'})
+        if(user.mobile_phone == ''):
+            errors['error'].update({ 2 : 'Antes de cadastrar um pet para adoção é necessário que insira seu telefone!'})
 
     if request.method == 'POST':
         print(request.POST)
@@ -49,7 +53,11 @@ def PersonalProfile(request):
                 user.cpf = str(data['cpf'])
                 user.mobile_phone = str(data['mobile_phone'])
                 user.save()
-                return redirect('/system/pets/my')
+                # return HttpResponseRedirect('%s?%s' % ('system/pets/my', "?update=success"))
+
+                response = redirect('/system/pets/my')
+                response['Location'] += '?update=success'
+                return response
 
         except:
             print(traceback.format_exc())
