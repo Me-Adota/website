@@ -25,7 +25,6 @@ def makeafriend(request):
     paginator = Paginator(pets, 8) # Show 25 contacts per page.
     page_number = request.GET.get('page')
     pets = paginator.get_page(page_number)
-
     # context{'pet':pet,'myFilter':myFilter}
     return render(request, 'pages/makeafriend.html', {'pets' : pets, 'myFilter':myFilter})
 
