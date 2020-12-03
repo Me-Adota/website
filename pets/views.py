@@ -20,10 +20,15 @@ def insertPets(request):
     errors = {}
     errors = { 'has_errors' : 0 } 
         
-    if(user.cpf == '' or user.full_name == '' or user.mobile_phone == '' or user.zip_code == ''):
+    if(user.cpf == '' or user.full_name == '' or user.mobile_phone == '' ):
         errors = { 'has_errors' : 1 } 
         errors['error'] = {}
-        errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você complete seu cadastro com telefone, cpf, nome e CEP!'})
+        if(user.cpf == ''):
+            errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu CPF'})
+        if(user.cpf == ''):
+            errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu nome!'})
+        if(user.cpf == ''):
+            errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que insira seu email!'})
 
     if request.method == 'POST' and errors['has_errors'] == 0: 
         form = PetForm(request.POST, request.FILES) 
@@ -85,6 +90,19 @@ def adopted(request,id):
     else:
         HttpResponse('Este pet nao te pertence... ainda!')
     return redirect('/system/pets/my')
+
+
+def notAdopted(request,id):
+    pet = Pet.objects.get(id=id)
+    pet.save()
+    if(request.user.id == pet.user_id):
+        pet.isAdopted = False
+        pet.save()
+        HttpResponse('success')
+    else:
+        HttpResponse('Este pet nao te pertence... ainda!')
+    return redirect('/system/pets/my')
+
 
 def success(request): 
     return HttpResponse('successfully uploaded') 
