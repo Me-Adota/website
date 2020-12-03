@@ -94,14 +94,20 @@
 
                                 </span>
                                 </p>
-                                    <a href="{% url 'pets:EditPet' pet.id  %}" class="mb-auto btn btn-info btn-rounded w-100 btn-lg btn-cards">+ Informações</a>
+                                    <a href="{%  url 'pages:Details' pet.id  %}" class="mb-2 btn btn-info btn-rounded w-100 btn-lg btn-cards">Ver informações</a>
+                                    <br>
+                                    <a href="{% url 'pets:EditPet' pet.id  %}" class="mb-auto btn btn-warning btn-rounded w-100 btn-lg btn-cards">Alterar informações</a>
                                 
-                                    <div class="text-center">
-                                        <a class="mt-5 w-100 mx-auto" href="{% url 'pets:adopted' pet.id %}"> Marcar como adotado </a>
-                                    </div>
+                                    {% if pet.isAdopted == 1 %}
                                     <div class="text-center">
                                         <a class="mt-5 w-100 mx-auto text-danger" href="{% url 'pets:notadopted' pet.id %}"> Marcar como não adotado </a>
                                     </div>
+                                    {% else  %}
+                                    <div class="text-center">
+                                        <a class="mt-5 w-100 mx-auto" href="{% url 'pets:adopted' pet.id %}"> Marcar como adotado </a>
+                                    </div>
+                                    {% endif %}
+                                    
                                 </div>
                             </div>
                         </div>
