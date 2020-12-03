@@ -67,6 +67,27 @@
         </div>
 
         <div class="col-12 col-md-8">
+            <div class="row justify-content-center p-2 mb-3 white-box text-center">
+                <div class="col-12 d-flex flex-column">
+                <div class="pagination text-center mx-auto">
+                    <span class="step-links">
+                        {% if pets.has_previous %}
+                            <a style="color:blue" href="?page=1">&laquo; first</a>
+                            <a style="color:blue" href="?page={{ pets.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span style="color:blue" class="current">
+                            Page {{ pets.number }} of {{ pets.paginator.num_pages }}.
+                        </span>
+
+                        {% if pets.has_next %}
+                            <a style="color:blue"href="?page={{ pets.next_page_number }}">next</a>
+                            <a style="color:blue" href="?page={{ pets.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+                </div>
+            </div>
             <div class="row py-5 white-box">
         {% for pet in pets %}
         <div class="col-12 col-md-4 my-3">
@@ -125,28 +146,7 @@
             
         </div>
         {% endfor %}
-        <br>
-<div class="pagination text-center">
-    <span class="step-links">
-        {% if pets.has_previous %}
-            <a style="color:blue" href="?page=1">&laquo; first</a>
-            <a style="color:blue" href="?page={{ pets.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span style="color:blue" class="current">
-            Page {{ pets.number }} of {{ pets.paginator.num_pages }}.
-        </span>
-
-        {% if pets.has_next %}
-            <a style="color:blue"href="?page={{ pets.next_page_number }}">next</a>
-            <a style="color:blue" href="?page={{ pets.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
     </div>
-        </div>
-    </div>
-    
 </div>
 
 

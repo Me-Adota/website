@@ -20,39 +20,54 @@
     </div>
 </div>
 
-<h1>Ola, {{user.full_name}}! </h1>
-
-<h3>{{ user.name }} </h3>
-    <!-- CUSTOM ERROR VALIDATOR -->
-    {% if errors.has_errors == 1 %}
-        <br>
-        <hr>
-        <div class="alert alert-danger" role="alert">
-            {% for index, value in errors.error.items %}
-                <li>{{ value }} </li>
-            {% endfor %}
+<header class="default-header-1 py-5">
+    <div class="container text-dark">
+        <div class="row justify-content-center">
+            <div class="col-4 mb-3 white-box py-3 text-center">
+                <h1>Atualizar dados</h1>
+                <h5>Olá, <strong>{{user.full_name}}!</strong></h5>
+                <p>Caso deseje alterar seus dados, basta <br> preencher os campos abaixos
+                    e clicar no botão enviar:
+                </p>                
+            </div>
         </div>
-    {% endif %}
-    <form method="POST" id="userForms" {% url 'users:userInfo' %} enctype="multipart/form-data">
-        {% csrf_token %} 
-        <hr>
-        {{form.error}}
-        <br><img src="{{ request.scheme }}://{{ request.get_host }}{{user.photo}}"><br>
-        Foto:<br>{{ form.photo }}<br>
-        Nome:<br>{{ form.full_name }}<br>
-        CPF: <br>{{ form.cpf }} <br>
-        Telefone: <br>{{ form.mobile_phone }}<br>
-        <button type="submit"> Salvar </button>
+        <div class="row justify-content-center">
+            <div class="col-4 pb-5 white-box text-center">
+                <h3>{{ user.name }} </h3>
+                <!-- CUSTOM ERROR VALIDATOR -->
+                {% if errors.has_errors == 1 %}
+                    <br>
+                    <hr>
+                    <div class="alert alert-danger" role="alert">
+                        {% for index, value in errors.error.items %}
+                            <li>{{ value }} </li>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <form method="POST" id="userForms" {% url 'users:userInfo' %} enctype="multipart/form-data">
+                    {% csrf_token %} 
+                    <hr>
+                    {{form.error}}
+                    <br><img src="{{ request.scheme }}://{{ request.get_host }}{{user.photo}}"><br>
+                    Foto:<br>{{ form.photo }}<br>
+                    Nome:<br>{{ form.full_name }}<br>
+                    CPF: <br>{{ form.cpf }} <br>
+                    Telefone celular: <br>{{ form.mobile_phone }}<br>
+                    <button class="btn btn-primary btn-lg w-100" type="submit"> Salvar </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
 
-    </form>
-</div>  
+
 <script>
 $(document).ready(function(){
+    $('input').addClass("form-control w-100")
     $("#id_password").attr("type", "password"); 
     $("#id_cpf").attr("data-mask" , "000.000.000-00");
-    $("#id_zip_code").attr("data-mask" , "00000-000");
-    $("#id_date_of_birth").attr("data-mask" , "0000-00-00");
     $("#id_mobile_phone").attr("data-mask" , "(00) 00000-0000");
+
 });
 
 // jQuery Mask Plugin v1.14.16
