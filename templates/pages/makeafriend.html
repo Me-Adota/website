@@ -70,7 +70,6 @@
         <div class="col-12 col-md-8">
             <div class="row py-5 white-box">
         {% for pet in pets %}
-            {% if pet.isAdopted == False %}
         <div class="col-12 col-md-4 my-3">
             <div class="card h-100 text-dark">
                 <img class="card-img-top" alt="No image" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}">
@@ -124,13 +123,33 @@
                     <a href="{%  url 'pages:Details' pet.id  %}" class="mb-auto btn btn-primary btn-rounded w-100 btn-lg btn-cards">+ Informações</a>
                 </div>
             </div>
+            
         </div>
-            {% endif %}
         {% endfor %}
+        <br>
+<div class="pagination text-center">
+    <span class="step-links">
+        {% if pets.has_previous %}
+            <a style="color:blue" href="?page=1">&laquo; first</a>
+            <a style="color:blue" href="?page={{ pets.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span style="color:blue" class="current">
+            Page {{ pets.number }} of {{ pets.paginator.num_pages }}.
+        </span>
+
+        {% if pets.has_next %}
+            <a style="color:blue"href="?page={{ pets.next_page_number }}">next</a>
+            <a style="color:blue" href="?page={{ pets.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
     </div>
         </div>
     </div>
+    
 </div>
+
 
 <div class="container pb-5">
     

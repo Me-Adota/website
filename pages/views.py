@@ -2,6 +2,8 @@ from django.shortcuts import render
 from pets.models import Pet
 from users.models import User
 from pets.filters import *
+from django.core.paginator import Paginator
+
 
 
 def aboutUs(request):
@@ -16,12 +18,13 @@ def infos(request):
     return render(request, 'pages/informations.html', {'qtd_vulnerable':qtd_vulnerable, 'qtd_pets':qtd_pets, 'qtd_adopted':qtd_adopted, 'qtd_users':qtd_users})
 
 def makeafriend(request):
-    pets = Pet.objects.all()
+    pets = Pet.objects.all().filter(isAdopted = False)
 
     myFilter = PetFilter(request.GET, queryset = pets)
-    
-
     pets = myFilter.qs.order_by('vulnerable').reverse()
+    paginator = Paginator(pets, 8) # Show 25 contacts per page.
+    page_number = request.GET.get('page')
+    pets = paginator.get_page(page_number)
 
     # context{'pet':pet,'myFilter':myFilter}
     return render(request, 'pages/makeafriend.html', {'pets' : pets, 'myFilter':myFilter})
