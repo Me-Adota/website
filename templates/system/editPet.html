@@ -36,11 +36,11 @@
                 {% csrf_token %} 
                 {{form.error}}
             </div>
-            <div class="col-6 py-5">
+            <div class="col-12 col-md-6 py-5">
                 <br><img class="img-fluid img-thumbnail" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
                 Foto do Pet:<br>{{ form.image }}<br>
             </div>
-            <div class="col-6 py-5">
+            <div class="col-12 col-md-6 py-5">
 
                 <div class="row">
                     <div class="col-6">
