@@ -99,6 +99,9 @@
                                     <div class="text-center">
                                         <a class="mt-5 w-100 mx-auto" href="{% url 'pets:adopted' pet.id %}"> Marcar como adotado </a>
                                     </div>
+                                    <div class="text-center">
+                                        <a class="mt-5 w-100 mx-auto text-danger" href="{% url 'pets:notadopted' pet.id %}"> Marcar como não adotado </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
