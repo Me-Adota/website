@@ -24,17 +24,17 @@ def PersonalProfile(request):
 
     form = UserEditForms(instance=user)
     errors = {}
-    errors = { 'has_errors' : 0 } 
+    errors = { 'has_errors' : 0 }
 
-    if(user.cpf == '' or user.full_name == '' or user.mobile_phone == '' ):
-        errors = { 'has_errors' : 1 } 
+    if(user.cpf == '' or user.cpf == None or user.full_name == '' or user.full_name == None or user.mobile_phone == '' or user.mobile_phone == None ):
+        errors = { 'has_errors' : 1 }
         errors['error'] = {}
-        if(user.cpf == ''):
+        if(user.cpf == '' or user.cpf == None):
             errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu CPF'})
-        if(user.full_name == ''):
+        if(user.full_name == '' or user.full_name == None ):
             errors['error'].update({ 1 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu nome!'})
-        if(user.mobile_phone == ''):
-            errors['error'].update({ 2 : 'Antes de cadastrar um pet para adoção é necessário que insira seu telefone!'})
+        if(user.mobile_phone == ''  or user.mobile_phone == None):
+            errors['error'].update({ 2 : 'Antes de cadastrar um pet para adoção é necessário que insira seu Telefone!'})
 
     if request.method == 'POST':
         print(request.POST)
@@ -47,7 +47,7 @@ def PersonalProfile(request):
                 user.photo = uploaded_file_url
             data = request.POST
 
-            errors = validate_fields(data, errors)    
+            errors = validate_fields(data, errors)
             if(errors['has_errors'] == 0):
                 user.full_name = str(data['full_name'])
                 user.cpf = str(data['cpf'])
@@ -68,7 +68,7 @@ def PersonalProfile(request):
 def validate_fields(data, errors):
     errors['has_errors'] = 0
     errors['error'] = {}
-    index = 0 
+    index = 0
 
 
     if('cpf' in data and data['cpf'] != ''):
