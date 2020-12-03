@@ -19,8 +19,10 @@ def makeafriend(request):
     pets = Pet.objects.all()
 
     myFilter = PetFilter(request.GET, queryset = pets)
+    
 
-    pets = myFilter.qs
+    pets = myFilter.qs.order_by('vulnerable').reverse()
+
     # context{'pet':pet,'myFilter':myFilter}
     return render(request, 'pages/makeafriend.html', {'pets' : pets, 'myFilter':myFilter})
 
