@@ -111,4 +111,3 @@ def validate_fields(data, errors):
 def logout_view(request):
     logout(request)
     return redirect('/')
-
