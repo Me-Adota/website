@@ -71,11 +71,12 @@
                                 {% if pet.vulnerable %}
                                     <span class="badge badge-danger">Vulnerável</span>
                                 {% endif %}
-                        
+                            
+                            
 
                                 </span>
                                 </p>
-                                    <a href="{%  url 'pages:Details' pet.id  %}" class="mb-auto btn btn-info btn-rounded w-100 btn-lg btn-cards">+ Informações</a>
+                                    <a href="{% url 'pets:EditPet' pet.id  %}" class="mb-auto btn btn-info btn-rounded w-100 btn-lg btn-cards">+ Informações</a>
                                 
                                     <div class="text-center">
                                         <a class="mt-5 w-100 mx-auto" href="{% url 'pets:adopted' pet.id %}"> Marcar como adotado </a>
