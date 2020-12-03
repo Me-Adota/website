@@ -37,12 +37,12 @@
                         </button>
                     </a>
 
-                    {% if user.is_authenticated %}
+                    {% if request.user.is_authenticated %}
                         <div class="dropdown show">
                             <a class="nav-link my-auto btn btn-success btn-rounded px-4 text-white dropdown-toggle h-100" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 
-                                {% if user.full_name is not None %}
-                                    <i class="far fa-user"></i> <span id="oPrimeiroNomeDoCara"> {{user.full_name}} </span>
+                                {% if request.user.full_name is not None %}
+                                    <i class="far fa-user"></i> <span id="oPrimeiroNomeDoCara"> {{request.user.full_name}} </span>
                                 {% else %}
                                     <i class="far fa-user"></i> Minha Conta
                                 {% endif %}
