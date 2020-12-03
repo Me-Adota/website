@@ -14,8 +14,8 @@
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-4 pt-2 pb-2 text-center text-light">
-                    <h5><strong><u>Quem somos?</u></strong></h5>
+                <div class="col-12 col-md-4 pt-2 pb-2 text-center text-light">
+                    <h5><strong><u><a href=" https://me-adota.github.io/docs/ " target="_blank" > Quem somos? </a></u></strong></h5>
                     <br>
                     <p>
                         Nós somos um projeto <u>sem fins lucrativos</u> que visa facilitar a adoção de animais disponibilizando uma plataforma gratuita e de qualidade.
@@ -32,22 +32,22 @@
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-4 pb-5 text-center">
+                <div class="col-12 col-md-4 pb-5 text-center">
                     <hr style="background-color: rgba(255,255,255,0.25);">
                     <br>
-                    <a href="" class="pr-2">
+                    <a href="https://twitter.com/" class="pr-2">
                         <button class="btn social-button twitter-button">
                             <i class="fab fa-twitter"></i> 
                         </button>
                     </a>
 
-                    <a href="" class="pr-2">
+                    <a href="https://www.facebook.com/" class="pr-2">
                         <button class="btn social-button facebook-button">
                             <i class="fab fa-facebook-f"></i> 
                         </button>
                     </a>
 
-                    <a href="">
+                    <a href="https://www.instagram.com/">
                         <button class="btn social-button instagram-button">
                             <i class="fab fa-instagram"></i> 
                         </button>
@@ -66,9 +66,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <small>© All rights reserved. - Desenvolvido pela <a href="#"><i class="fab fa-github"></i> Equipe Ancient Fiddle</a></small>
+                    <small>© All rights reserved.<br class="d-md-none"> - Desenvolvido pela <a href="#"><i class="fab fa-github"></i> Equipe Ancient Fiddle</a></small>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        if(document.getElementById("oPrimeiroNomeDoCara") != null){
+            str = document.getElementById('oPrimeiroNomeDoCara').innerHTML;
+            name = str.split(" ")[1];
+            document.getElementById("oPrimeiroNomeDoCara").textContent=" "+name+" ";
+        }
+    </script>
 {% endblock footer %}

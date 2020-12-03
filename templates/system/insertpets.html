@@ -1,45 +1,108 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block page_styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 {% endblock page_styles%}
 
 {% block content %}
 
-<h3>Cadastrar pet</h3>
+<div id="loading-box">
+        <div class="container h-100 text-center">
+            <div class="row">
+            <div class="col-12 align-self-center">
+            <img class="img-fluid loading-dog" src="{% static 'img/common/loading_1.gif' %}" alt="">
+            <br>
+            <img class="img-fluid loading-gif" src="{% static 'img/common/loading_2.gif' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
 
-    <form method="POST" action="{% url 'pets:insertPet' %}" enctype="multipart/form-data">
-        <hr>
-        {% csrf_token %} 
-        {{form.error}}
-        <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
-        Foto do Pet:<br>{{ form.image }}<br>
-        Nome: <br>{{ form.name }} <br>
-        Descrição: <br>{{ form.description }} <br>
-        Data de nascimento: (YYYY/MM/DD)<br>{{ form.birth_date }}<br>
-        Tipo do pet: <br>{{ form.pet_type }}<br>
-        Raça: <br>{{ form.breed }}<br>
-        Tamanho: <br>{{ form.size }}<br>
-        Sexo: <br>{{ form.sex }}<br>
-        Vacinado: <br>{{ form.vaccinated }}<br>
-        Castrado: <br>{{ form.castrated }}<br>
-        Vermifugado: <br>{{ form.dewormed }}<br>
-        Vulnerável: <br>{{ form.vulnerable }}<br>
+<header class="default-header-1 py-5">
+    <div class="container bg-white py-5" style="border-radius: 40px;">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>Cadastre um novo Pet para adoção!</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            {% if errors.has_errors == 1 %}
+                <br>
+                <hr>
+                <div class="alert alert-danger" role="alert">
+                    {% for index, value in errors.error.items %}
+                        <li>{{ value }} </li>
+                    {% endfor %}
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-success btn-round btn-lg" href="{% url 'users:userInfo' %}"> Completar cadastro </a> 
+                </div>
+                <hr>
+            {% endif %}  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form method="POST" action="{% url 'pets:insertPet' %}" enctype="multipart/form-data">
+                    {% csrf_token %} 
+                    {{form.error}}<br>
+    
+                    <div class="row">
+                        <div class="col-12 col-md-6" id="info">
+                            <h1>
+                                <span class="badge badge-info w-100">Informações Gerais</span>
+                            </h1>
 
-        <button type="submit"> Enviar </button>
+                            Foto do Pet:<br>{{ form.image }}<br><br>
+                            Nome: <br>{{ form.name }} <br>
+                            Descrição: <br>{{ form.description }} <br>
+                            Idade:<br>{{ form.age }}<br>
+                            Tipo do pet: <br>{{ form.pet_type }}<br>
+                            Raça: <br>{{ form.breed }}<br>
+                            Tamanho: <br>{{ form.size }}<br>
+                            Sexo: <br>{{ form.sex }}<br>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex flex-column" style="height: auto; position: relative;" id="saude">
+                            <h1>
+                                <span class="badge badge-info w-100">Saúde</span>
+                            </h1>
+                            
+                            <div >
+                                {{ form.vaccinated }} 
+                                <strong class="">Vacinado?</strong><br>
+                                {{ form.castrated }} 
+                                <strong class="">Castrado?</strong><br>
+                                {{ form.dewormed }} 
+                                <strong class="">Vermifugado?</strong><br>
+                                {{ form.vulnerable }} 
+                                <strong class="">Vulnerável?</strong><br>
+                            </div>
 
-    </form>
-</div>  
+                            <button class="mt-auto btn btn-primary btn-lg w-100 mb-3" type="submit" {% if errors.has_errors == 1 %} disabled {% endif %}> Cadastrar </button>
+                        </div>
+                    </div>
+            
+                </form> 
+            </div>
+        </div>
+    </div>
+</header>
 
 <script>
 
 $(document).ready(function() {
     $("#id_name").addClass("input-field");
-    $("#id_birth_date").attr("data-mask" , "0000-00-00");
-    $("#id_birth_date").attr("placeholder" , "1998-25-03",);
+    $("#id_age").addClass("form-control");
+    $("#id_description").addClass("");
+    $("#saude input").addClass("d-inline")
+    $("#info input[type=text]").addClass("w-100 form-control");
+    $("#info select").addClass("w-100 form-control");
 })
+  
 // jQuery Mask Plugin v1.14.16
 // github.com/igorescobar/jQuery-Mask-Plugin
 $(document).ready(function(){

@@ -30,7 +30,7 @@
 <header>
   <div class="container">
     <div class="row py-5 justify-content-center">
-      <div class="col-4 py-5 px-4">
+      <div class="col-12 col-md-4 py-5 px-4">
         <div class="text-center">
           <h3>Registre-se agora mesmo!</h3>
         </div>
@@ -38,15 +38,15 @@
         {% get_providers as socialaccount_providers %}
         
         <div class="d-flex pb-2">
-          <a class="btn btn-google btn-lg btn-rounded w-100 mr-2" href="#">
+          <button class="btn btn-google btn-lg btn-rounded w-100 mr-2" tabindex="0" data-toggle="tooltip" title="DESATIVADO NO MOMENTO.">
             <i class="fab fa-google"></i>
-          </a>
-          <a class="btn btn-facebook btn-lg btn-rounded w-100 mr-2" href="/accounts/facebook/login/?process=signup">
+          </button>
+          <button class="btn btn-facebook btn-lg btn-rounded w-100 mr-2" tabindex="0" data-toggle="tooltip" title="DESATIVADO NO MOMENTO.">
             <i class="fab fa-facebook-f"></i>
-          </a>
-          <a class="btn btn-twitter btn-lg btn-rounded w-100" href="#">
+          </button>
+          <button class="btn btn-twitter btn-lg btn-rounded w-100" tabindex="0" data-toggle="tooltip" title="DESATIVADO NO MOMENTO.">
             <i class="fab fa-twitter"></i>
-          </a>
+          </button>
         </div>
         
         <hr>
@@ -67,5 +67,11 @@
     </div>
   </div>
 </header>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
+</script>
 
 {% endblock %}

@@ -22,21 +22,29 @@
     <header>
         <div class="container">
             <div class="row">
-                <div class="col-6 py-5">
-                    <h1>
-                        <strong>
-                            Abra o seu coração e a sua casa.
-                        </strong>
-                    </h1>
+                <div class="col-12 col-md-6 py-5">
+                    <div class="text-center text-md-left">
+                        <h1>
+                            <strong>
+                                Abra o seu coração e a sua casa.
+                            </strong>
+                        </h1>
+                    </div>
                     <br>
-                    <p>
-                        No Brasil, <b><u><a href="https://anda.jusbrasil.com.br/noticias/100681698/brasil-tem-30-milhoes-de-animais-abandonados" target="_blank">mais de 30 milhões de animais</a></u></b> estão em situação vulnerável, alguns abrigados temporariamente em diversas ONGs espalhadas pelo país.
-                        É importante salvar essas vidas, compartilhando um lar, carinho e amor.
-                    </p>
+                    <div class="text-justify text-md-left">
+                        <p>
+                            No Brasil, <b><u><a href="https://anda.jusbrasil.com.br/noticias/100681698/brasil-tem-30-milhoes-de-animais-abandonados" target="_blank">mais de 30 milhões de animais</a></u></b> estão em situação vulnerável, alguns abrigados temporariamente em diversas ONGs espalhadas pelo país.
+                            É importante salvar essas vidas, compartilhando um lar, carinho e amor.
+                        </p>
+                    </div>
                     <br>
-                    <button class="btn btn-lg btn-light btn-rounded px-4">
-                        Faça um amigo <i class="far pl-2 fa-heart"></i>
-                    </button>
+                    <div class="text-center text-md-left">
+                        <a class="mb-2 mb-md-0" href="{% url 'pages:makeafriend' %}">
+                            <button class="btn btn-lg btn-light btn-rounded px-4">
+                             Faça um amigo <i class="far pl-2 fa-heart"></i>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,33 +67,34 @@
                     </div>
                     <div class="col-12">
                         <p>
-                            Lorem ipsum dolor sit.
+                            Você pode encontrar vários tipos de pets disponíveis,<br>
+                            dos pequenos, até os grandes!
                         </p>
                     </div>
                 </div>
                 <div class="row py-5">
-                    <div class="col-3 px-5 text-center">
+                    <div class="col-12 col-md-3 mb-5 mb-md-0 px-5 text-center">
                         <div style="height: 100%; max-height: 180px;">
                             <img class="img-thumbnail img-rounded img-fit" src="{% static 'img/home/cat.jpg' %}" alt="">
                         </div>
                         <br>
                         <h4><strong>Gatos</strong></h4>
                     </div>
-                    <div class="col-3 px-5 text-center">
+                    <div class="col-12 col-md-3 mb-5 mb-md-0 px-5 text-center">
                         <div style="height: 100%; max-height: 180px;">
                             <img class="img-thumbnail img-rounded img-fit" src="{% static 'img/home/dog.jpg' %}" alt="">
                         </div>
                         <br>
                         <h4><strong>Cachorros</strong></h4>
                     </div>
-                    <div class="col-3 px-5 text-center">
+                    <div class="col-12 col-md-3 mb-5 mb-md-0 px-5 text-center">
                         <div style="height: 100%; max-height: 180px;">
                             <img class="img-thumbnail img-rounded img-fit" src="{% static 'img/home/cacatua.jpeg' %}" alt="">
                         </div>
                         <br>
                         <h4><strong>Pássaros</strong></h4>
                     </div>
-                    <div class="col-3 px-5 text-center">
+                    <div class="col-12 col-md-3 mb-5 mb-md-0 px-5 text-center">
                         <div style="height: 100%; max-height: 180px;">
                             <img class="img-thumbnail img-rounded img-fit" src="{% static 'img/home/coelho.jpg' %}" alt="">
                         </div>
@@ -107,10 +116,10 @@
         <section id="additional-information">
             <div class="container">
                 <div class="row py-5">
-                    <div class="col-6">
+                    <div class="col-12 col-md-6">
                         <img class="img-fluid" src="{% static 'img/home/additional.png'%}" alt="">
                     </div>
-                    <div class="col-6 align-self-center">
+                    <div class="col-12 col-md-6 align-self-center">
                         <div class="text-center">
                             <h1><strong>Por que adotar um amigo?</strong></h1>
                             <br>
@@ -129,9 +138,11 @@
                         </div>
 
                         <div class="w-100 text-center py-5">
-                            <button class="btn btn-lg btn-danger w-50 btn-rounded px-4">
-                                Faça um amigo<i class="fas pl-2 fa-heart"></i>
-                            </button>
+                            <a class="mb-2 mb-md-0" href="{% url 'pages:makeafriend' %}">
+                                <button class="btn btn-lg btn-danger w-100 w-md-50 btn-rounded px-4">
+                                    Faça um amigo<i class="fas pl-2 fa-heart"></i>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -154,38 +165,38 @@
                     </div>
                 </div>
                 <div class="row py-5">
-                    <div class="col-3 text-center">
+                    <div class="col-12 col-md-3 mb-5 mb-md-0  text-center">
                         <div class="img-info p-4 mx-auto">
                             <img class="img-fluid" src="{% static 'img/home/header_2_1.png' %}" width="100%" alt="">
                         </div>
                         <br>
-                        <h3>50</h3>
-                        <h3>Animais adotados</h3>
+                        <h3>{{qtd_vulnerable}}</h3>
+                        <h5>Animais vulneráveis</h5>
                     </div>
-                    <div class="col-3 text-center">
+                    <div class="col-12 col-md-3 mb-5 mb-md-0 text-center">
                         <div class="img-info p-4 mx-auto">
                             <img class="img-fluid" src="{% static 'img/home/header_2_2.png' %}" width="100%" alt="">
                         </div>
                         <br>
-                        <h3>50</h3>
-                        <h3>Animais buscando lar</h3>
+                        <h3>{{qtd_pets}}</h3>
+                        <h5>Animais buscando por um lar</h5>
                     </div>
-                    <div class="col-3 text-center">
+                    <div class="col-12 col-md-3 mb-5 mb-md-0 text-center">
                         <div class="img-info p-4 mx-auto">
                             <img class="img-fluid" src="{% static 'img/home/header_2_3.png' %}" width="100%" alt="">
                         </div>
                         <br>
-                        <h3>50</h3>
-                        <h3>Bla bla</h3>
+                        <h3>{{qtd_adopted}}</h3>
+                        <h5>Animais adotados</h5>
                     </div>
-                    <div class="col-3 text-center">
+                    <div class="col-12 col-md-3 mb-5 mb-md-0 text-center">
                         <div class="img-info p-4 mx-auto">
                             <img class="img-fluid" src="{% static 'img/home/header_2_4.png' %}" width="70%" alt="">
                         </div>
                         <br>
-                        <h3>50</h3>
-                        <h3>Bla bla</h3>
-                    </div>
+                        <h3>{{qtd_users}}</h3>
+                        <h5>Lares disponíveis</h5> 
+                     </div>
                 </div>
             </div>
         </section>
@@ -197,7 +208,7 @@
                     <div class="col-12 text-center text-secondary">
                         <h3>
                             <strong>
-                                Veja nossos artigos:
+                                Alguns de nossos pets:
                             </strong>
                         </h3>
 
@@ -206,79 +217,86 @@
                         </div>
 
                         <p>
-                            Não concordo.
+                            Esses são alguns animais cadastrados <br>
+                            que estão à procura de um lar.
                         </p>
                     </div>
                 </div>
 
-                <div class="row py-5 px-5">
-                {% comment %} Imagem : <br><br>
-                        Nome : <br>
-                        Descrição: <br>
-                        Data de nascimento: {{pet.birth_date}}<br>
-                        Tipo do pet: {{pet.type}}<br>
-                        Raça do pet: {{pet.breed}}<br>
-                        Tamanho do pet: {{pet.size}}<br>
-                        Sexo do pet: {{pet.sex}}<br>
-                        Vacinado: {{pet.vaccinated}}<br>
-                        Castrado: {{pet.castrated}}<br>
-                        Tamanho: {{pet.dewormed}}<br>
-                        Vulnerável: {{pet.vulnerable}}<br>
-                        <a href="{% url 'pets:EditPet' pet.id %}   "> Atualizar informacao </a> {% endcomment %}
-                        <hr>
+                <div class="row justify-content-center py-5">
                     {% for pet in pets %}
-                        <div class="col-4">
-                            <div class="card">
-
+                        <div class="col-12 col-md-4 my-3">
+                            <div class="card h-100 text-dark">
                                 <img class="card-img-top" alt="No image" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}">
                                 <div class="card-body">
-                                <h5 class="card-title">{{pet.name}}</h5>
-                                <p class="card-text">{{pet.description}}</p>
-                                <a href="{%  url 'pages:Details' pet.id  %}" class="btn btn-primary btn-rounded w-100 btn-lg btn-cards">Go somewhere</a>
+                                <h5 class="card-title">
+                                <small>Nome: </small>
+                                <strong>{{pet.name}}</strong>
+                                </h5>
+                                <p class="card-text">
+                                <div class="text-truncate" style="height: 30px;">
+                                    <small>Descrição: </small>
+                                    {{pet.description}}
+                                </div>
+                                <hr>
+                                <span class="badge badge-info">
+                                {% if pet.sex == 'M'%}
+                                    Macho
+                                {% else %}
+                                    Fêmea
+                                {% endif %}
+                                </span>
+                                <span class="badge badge-info">
+                                {% if pet.size == 'P'%}
+                                    Pequeno
+                                {% elif pet.size == 'M'%}
+                                    Médio
+                                {% else %}
+                                    Grande
+                                {% endif %}
+                                </span>
+
+                                {% if pet.vaccinated %}
+                                    <span class="badge badge-success">Vacinado</span>
+                                {% endif %}
+                                    
+                                {% if pet.castrated %}
+                                    <span class="badge badge-success">Castrado</span>
+                                {% endif %}
+                                    
+                                {% if pet.dewormed %}
+                                    <span class="badge badge-success">Vermifugado</span>
+                                {% endif %}
+
+                                {% if pet.vulnerable %}
+                                    <span class="badge badge-danger">Vulnerável</span>
+                                {% endif %}
+                        
+
+                                </span>
+                                </p>
+                                    <a href="{%  url 'pages:Details' pet.id  %}" class="mb-auto btn btn-primary btn-rounded w-100 btn-lg btn-cards">+ Informações</a>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <hr>
+                        <div class="text-center py-5">
+                            <a class="mb-2 mb-md-0" href="{% url 'pages:makeafriend' %}">
+                                <button class="btn px-5 btn-lg btn-danger btn-rounded px-4">
+                                    Ver mais amigos disponíveis <i class="fas pl-2 fa-heart"></i>
+                                </button>
+                            </a>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-
-
-
-
-
-
-
-
-
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Acesse a sua conta</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form action="{% url 'account_login' %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ request.get_full_path }}" />
-            
-                <input id="id_login" name="login" placeholder="Username or e-mail" type="text" required />
-                <input id="id_password" name="password" placeholder="Password" type="password" required />
-            
-                <label for="id_remember">Remember Me:</label>
-                <input id="id_remember" name="remember" type="checkbox" />
-            
-                <button type="submit">Login</button>
-                <a href="{% url 'account_reset_password' %}">Forgot Password?</a>
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
 {% endblock content %}

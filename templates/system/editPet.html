@@ -8,6 +8,17 @@
 
 {% block content %}
 
+<div id="loading-box">
+    <div class="container h-100 text-center">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                <img class="img-fluid loading-dog" src="{% static 'img/common/loading_1.gif' %}" alt="">
+                <br>
+                <img class="img-fluid loading-gif" src="{% static 'img/common/loading_2.gif' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
 
 {% comment %} <form method="POST" action="{% url 'pets:insertPet' %}" >
         {% csrf_token %}
@@ -43,6 +54,14 @@
 </form> {% endcomment %}
 {% comment %} {{form.errors}} {% endcomment %}
 
+{% if errors.has_errors == 1 %}
+    <br>
+    <div class="text-center">
+        <h2 class="text-muted">{{ errors.error.0 }}</h2>
+        <a class="btn btn-danger btn-lg" href="{%  url 'pages:Details' pet.id  %}"> Adote ele aqui </a>
+    </div>
+    <br>
+{% else %}
 <h3>{{ pet.name }} </h3>
 <form method="POST" action="{% url 'pets:EditPet' pet.id %}" enctype="multipart/form-data">
     <hr>
@@ -52,7 +71,7 @@
     Foto do Pet:<br>{{ form.image }}<br>
     Nome: <br>{{ form.name }} <br>
     Descrição: <br>{{ form.description }} <br>
-    Data de nascimento: (YYYY/MM/DD)<br>{{ form.birth_date }}<br>
+    Idade:<br>{{ form.age }}<br>
     Tipo do pet: <br>{{ form.pet_type }}<br>
     Raça: <br>{{ form.breed }}<br>
     Tamanho: <br>{{ form.size }}<br>
@@ -61,15 +80,15 @@
     Castrado: <br>{{ form.castrated }}<br>
     Vermifugado: <br>{{ form.dewormed }}<br>
     Vulnerável: <br>{{ form.vulnerable }}<br>
+    Adotado: <br>{{ form.isAdopted }}<br>
+    
     <button type="submit"> Enviar </button>
 </form>
 </div>  
-
+{% endif %}
 <script>
 $(document).ready(function() {
     $("#id_name").addClass("input-field");
-    $("#id_birth_date").attr("data-mask" , "0000-00-00");
-    $("#id_birth_date").attr("placeholder" , "1998-25-03",);
 })
 // jQuery Mask Plugin v1.14.16
 // github.com/igorescobar/jQuery-Mask-Plugin

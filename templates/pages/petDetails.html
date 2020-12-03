@@ -2,29 +2,234 @@
 {% load static %}
 
 {% block page_styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    
 {% endblock page_styles%}
 
 
 {% block content %}
 
+<div id="loading-box">
+    <div class="container h-100 text-center">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                <img class="img-fluid loading-dog" src="{% static 'img/common/loading_1.gif' %}" alt="">
+                <br>
+                <img class="img-fluid loading-gif" src="{% static 'img/common/loading_2.gif' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
 
-<br>
-<img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
-Foto do Pet:<br>{{ pet.image }}<br>
-Nome: <br>{{ pet.name }} <br>
-Descrição: <br>{{ pet.description }} <br>
-Data de nascimento: (YYYY/MM/DD)<br>{{ pet.birth_date }}<br>
-Tipo do pet: <br>{{ pet.pet_type }}<br>
-Raça: <br>{{ pet.breed }}<br>
-Tamanho: <br>{{ pet.size }}<br>
-Sexo: <br>{{ pet.sex }}<br>
-Vacinado: <br>{{ pet.vaccinated }}<br>
-Castrado: <br>{{ pet.castrated }}<br>
-Vermifugado: <br>{{ pet.dewormed }}<br>
-Vulnerável: <br>{{ pet.vulnerable }}<br>
-<hr>
-<textarea rows="10" placeholder="Escreva aqui um texto contando o por que você gostaria de abrigar o !{{pet.name}}, com detalhes sobre você e o ambiente que o pet ficará com você"></textarea>
-<hr>
-<button> Solicitar pet </button>
+<header class="default-header-1">    
+    <div class="container py-5">
+        <div class="row white-box text-dark">
+            <div class="col-12 col-md-6 py-5 text-center">
+                <img class="img-fluid img-thumbnail" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}">
+            </div>
+            <div class="col-12 col-md-6  py-5">
+                {% if pet.isAdopted == False %}
+                <h5><span class="badge badge-success w-100" style="padding:12px"><i class="fas fa-check-circle"></i> DISPONÍVEL PARA ADOÇÃO!</span></h5>
+                {% else %}
+                <h5><span class="badge badge-warning w-100" style="padding:12px"><i class="fas fa-minus-circle"></i> ESTE PET JÁ FOI ADOTADO!</span></h5>
+                {% endif %}
+                <h5><small>Nome: </small></h5>
+                <h5><strong>{{ pet.name }}</strong></h5><br>
+                <h5><small>Descrição: </small></h5>
+                <h5><strong>{{ pet.description }}</strong></h5><br>
+
+                <div class="row">
+                    <div class="col-6">
+                        Idade:
+                    </div>
+                    <div class="col-6">
+                        <strong>{{ pet.age }} anos.</strong>
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Tipo do pet:
+                    </div>
+                    <div class="col-6">
+                        <strong>{{ pet.pet_type }}</strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Raça do pet:
+                    </div>
+                    <div class="col-6">
+                        <strong>{{ pet.breed }}</strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Tamanho do pet:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.size == 'P'%}
+                                Pequeno
+                            {% elif pet.size == 'M'%}
+                                Médio
+                            {% else %}
+                                Grande
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Sexo do pet:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.sex == 'M'%}
+                                Macho
+                            {% else %}
+                                Fêmea
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Vacinado:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.vaccinated %}
+                                Sim
+                            {% else %}
+                                Não
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Castrado:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.castrated %}
+                                Sim
+                            {% else %}
+                                Não
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Vermifugado:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.dewormed %}
+                                Sim
+                            {% else %}
+                                Não
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Vulnerável:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if pet.vulnerable %}
+                                Sim
+                            {% else %}
+                                Não
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5 white-box">
+            <div class="col-12 py-5 text-dark">
+                <div class="text-center">
+                    <h5><strong>Gostou? Entre em contato para adotar!</strong></h5>
+                </div>
+                <br>
+                <div class="row mx-auto" style="max-width: 500px;">
+                    <div class="col-6">
+                        Telefone:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if logged == True %}
+                                {{ user.mobile_phone }}
+                            {% else %}
+                            {{ user.mobile_phone|slice:"0:4" }}...
+                                {% comment %} <a target="_blank" href="{{ request.scheme }}://{{ request.get_host }}/accounts/login"> Saber mais </a> {% endcomment %}
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row mx-auto align-content-self-center" style="max-width: 500px;">
+                    <div class="col-6">
+                        Email:
+                    </div>
+                    <div class="col-6">
+                        <strong>
+                            {% if logged == True %}
+                                {{ user.email }}
+
+                            {% else %}
+                                xxx@email.com
+                            {% endif %}
+                        </strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <br>
+                {%  if logged == False %}
+                    <div class="row mx-auto text-center" style="max-width: 500px;">
+                        <div class="col-12">
+                            <strong>Faça o <a  href="{{ request.scheme }}://{{ request.get_host }}/accounts/login">login</a> para ver mais detalhes <strong>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
 {% endblock content %}

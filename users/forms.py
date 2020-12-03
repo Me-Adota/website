@@ -4,6 +4,25 @@ from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import User
+from allauth.account.forms import SignupForm
+class MyCustomSignupForm(SignupForm):
+    full_name = forms.CharField(max_length=255)
+    email = forms.EmailField(max_length=255)
+
+    class Meta:
+        model = User
+        fields = ('full_name', 'email', 'password1', 'password2', )
+    def save(self, request):
+
+        # Ensure you call the parent class's save.
+        # .save() returns a User object.
+        user = super(MyCustomSignupForm, self).save(request)
+        user.full_name = self.cleaned_data['full_name']
+        user.save()
+        # Add your own processing here.
+        # You must return the original result.
+        return user
+
 class MyLoginForm(forms.Form):
     """
         Custom ALL AUTH LOGIN form.
@@ -199,15 +218,15 @@ class UserAdminChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 class UserEditForms(forms.ModelForm):
-    class Meta: 
-        model = User 
+    class Meta:
+        model = User
         fields = (
             'full_name' , 'active' ,'cpf',
             'date_of_birth','address1','address2',
             'zip_code', 'city','country',
             'mobile_phone','additional_information','photo',
             'email'
-        ) 
+        )
 
 # full_name
 # active
