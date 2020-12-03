@@ -84,8 +84,8 @@ def adopted(request,id):
         HttpResponse('success')
     else:
         HttpResponse('Este pet nao te pertence... ainda!')
-
     return redirect('/system/pets/my')
 
 def success(request): 
     return HttpResponse('successfully uploaded') 
+
