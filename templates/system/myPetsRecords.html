@@ -83,6 +83,12 @@
                                 {% if pet.vulnerable %}
                                     <span class="badge badge-danger">Vulnerável</span>
                                 {% endif %}
+
+                                {% if pet.isAdopted == 1 %}
+                                    <span class="badge badge-danger">Adotado</span>
+                                {% else  %}
+                                    <span class="badge badge-success">Disponivel</span>
+                                {% endif %}
                             
                             
 
