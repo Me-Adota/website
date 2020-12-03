@@ -25,10 +25,10 @@ def insertPets(request):
         errors['error'] = {}
         if(user.cpf == ''):
             errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu CPF'})
-        if(user.cpf == ''):
-            errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu nome!'})
-        if(user.cpf == ''):
-            errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que insira seu email!'})
+        if(user.full_name == ''):
+            errors['error'].update({ 1 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu nome!'})
+        if(user.mobile_phone == ''):
+            errors['error'].update({ 2 : 'Antes de cadastrar um pet para adoção é necessário que insira seu Telefone!'})
 
     if request.method == 'POST' and errors['has_errors'] == 0: 
         form = PetForm(request.POST, request.FILES) 
