@@ -43,11 +43,6 @@ def PersonalProfile(request):
             data = request.POST
 
             errors = validate_fields(data, errors)    
-            print("-----------------------")
-            # errors['has_errors'] = 0 
-
-            print(errors)
-            print("-----------------------")
             if(errors['has_errors'] == 0):
                 user.full_name = str(data['full_name'])
                 user.cpf = str(data['cpf'])
@@ -63,9 +58,7 @@ def PersonalProfile(request):
                 user.additional_information = str(data['additional_information'])
                 user.save()
 
-                redirect('system/personal.html')
         except:
-            print("----------ERRROR-------------")
             print(traceback.format_exc())
             return redirect('system/personal')
 
