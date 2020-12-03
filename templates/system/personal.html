@@ -48,8 +48,7 @@
                     {% csrf_token %} 
                     <hr>
                     {{form.error}}
-                    <br><img  class=" img-fluid " src="{{ request.scheme }}://{{ request.get_host }}{{user.photo}}"><br>
-                    Foto:<br>{{ form.photo }}<br>
+            
                     Nome:<br>{{ form.full_name }}<br>
                     CPF: <br>{{ form.cpf }} <br>
                     Telefone celular: <br>{{ form.mobile_phone }}<br>
