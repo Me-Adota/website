@@ -19,14 +19,16 @@ def makeafriend(request):
     pets = Pet.objects.all()
 
     myFilter = PetFilter(request.GET, queryset = pets)
+    
 
-    pets = myFilter.qs
+    pets = myFilter.qs.order_by('vulnerable').reverse()
+
     # context{'pet':pet,'myFilter':myFilter}
     return render(request, 'pages/makeafriend.html', {'pets' : pets, 'myFilter':myFilter})
 
 def HomeView(TemplateView):
     pets = Pet.objects.all()
-    pets = pets.filter(isAdopted = False)[:6]
+    pets = pets.filter(isAdopted = False).order_by('vulnerable').reverse()[:6]
 
     qtd_pets = Pet.objects.filter(isAdopted=False).count()
     qtd_adopted = Pet.objects.filter(isAdopted=True).count()
