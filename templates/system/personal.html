@@ -14,9 +14,13 @@
 <h3>{{ user.name }} </h3>
     <!-- CUSTOM ERROR VALIDATOR -->
     {% if errors.has_errors == 1 %}
-        {% for index, value in errors.error.items %}
-            <li>{{ value }} </li>
-        {% endfor %}
+        <br>
+        <hr>
+        <div class="alert alert-danger" role="alert">
+            {% for index, value in errors.error.items %}
+                <li>{{ value }} </li>
+            {% endfor %}
+        </div>
     {% endif %}
     <form method="POST" id="userForms" {% url 'users:userInfo' %} enctype="multipart/form-data">
         {% csrf_token %} 
@@ -47,18 +51,6 @@ $(document).ready(function(){
     $("#id_zip_code").attr("data-mask" , "00000-000");
     $("#id_date_of_birth").attr("data-mask" , "0000-00-00");
     $("#id_mobile_phone").attr("data-mask" , "(00) 00000-0000");
-
-    /*$('#verifyAndSubmit').click(function(){
-        var formData = new FormData(document.querySelector('#userForms'));
-
-        var request = $.ajax({
-            url: "{{ request.scheme }}://{{ request.get_host }}",
-            method: "POST",
-            data: {data : formData},
-            dataType: "html"
-        });
-    });*/
-   
 });
 
 // jQuery Mask Plugin v1.14.16

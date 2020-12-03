@@ -31,16 +31,17 @@
         <div class="row">
             <div class="col-12">
             {% if errors.has_errors == 1 %}
-                <div class="text-center" style="border:solid 1px; border-color:red; ">
+                <br>
+                <hr>
+                <div class="alert alert-danger" role="alert">
                     {% for index, value in errors.error.items %}
                         <li>{{ value }} </li>
                     {% endfor %}
-                    <br>
-                    <div class="text-center">
-                        <a class="btn btn-danger btn-round btn-sm" href="{% url 'users:userInfo' %}"> Completar cadastro </a> 
-                    </div>
-                    <br>
                 </div>
+                <div class="text-center">
+                    <a class="btn btn-success btn-round btn-lg" href="{% url 'users:userInfo' %}"> Completar cadastro </a> 
+                </div>
+                <hr>
             {% endif %}  
             </div>
         </div>
