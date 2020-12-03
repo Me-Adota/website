@@ -20,40 +20,6 @@
     </div>
 </div>
 
-{% comment %} <form method="POST" action="{% url 'pets:insertPet' %}" >
-        {% csrf_token %}
-            {% for field in form %}
-                <div class="fieldWrapper">
-                    {{ field.errors }}
-                    {{ field.label_tag }} {{ field }}
-                </div>
-            {% endfor %}
-        <input type="submit" value="Submit">
-</form> {% endcomment %}
-
-{% comment %} <form action="{% url 'pets:insertPet' %}" method="post" >
-    {% csrf_token %}
-    {% if form.non_field_errors %}
-        <div class="form-group text-error">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
-
-    {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
-            {% if field.help_text %}
-            <p class="help">{{ field.help_text|safe }}</p>
-            {% endif %}
-        </div>
-    {% endfor %}
-
-
-    <button type="submit"> Enviar </button>
-</form> {% endcomment %}
-{% comment %} {{form.errors}} {% endcomment %}
-
 {% if errors.has_errors == 1 %}
     <br>
     <div class="text-center">
@@ -62,33 +28,160 @@
     </div>
     <br>
 {% else %}
-<h3>{{ pet.name }} </h3>
 <form method="POST" action="{% url 'pets:EditPet' pet.id %}" enctype="multipart/form-data">
-    <hr>
-    {% csrf_token %} 
-    {{form.error}}
-    <br><img src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
-    Foto do Pet:<br>{{ form.image }}<br>
-    Nome: <br>{{ form.name }} <br>
-    Descrição: <br>{{ form.description }} <br>
-    Idade:<br>{{ form.age }}<br>
-    Tipo do pet: <br>{{ form.pet_type }}<br>
-    Raça: <br>{{ form.breed }}<br>
-    Tamanho: <br>{{ form.size }}<br>
-    Sexo: <br>{{ form.sex }}<br>
-    Vacinado: <br>{{ form.vaccinated }}<br>
-    Castrado: <br>{{ form.castrated }}<br>
-    Vermifugado: <br>{{ form.dewormed }}<br>
-    Vulnerável: <br>{{ form.vulnerable }}<br>
-    Adotado: <br>{{ form.isAdopted }}<br>
-    
-    <button type="submit"> Enviar </button>
-</form>
-</div>  
+<header class="default-header-1">
+    <div class="container py-5">
+        <div class="row white-box text-dark">
+            <div class="col-12 ">
+                {% csrf_token %} 
+                {{form.error}}
+            </div>
+            <div class="col-6 py-5">
+                <br><img class="img-fluid img-thumbnail" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}"><br>
+                Foto do Pet:<br>{{ form.image }}<br>
+            </div>
+            <div class="col-6 py-5">
+
+                <div class="row">
+                    <div class="col-6">
+                        Nome:
+                    </div>
+                    <div class="col-6">
+                        {{ form.name }}
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Descrição:
+                    </div>
+                    <div class="col-6">
+                        {{ form.description }}
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Idade (em anos):
+                    </div>
+                    <div class="col-6">
+                        {{ form.age }}
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Tipo do pet:
+                    </div>
+                    <div class="col-6">
+                        <strong>{{ form.pet_type }}</strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Raça do pet:
+                    </div>
+                    <div class="col-6">
+                        <strong>{{ form.breed }}</strong> 
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Tamanho:
+                    </div>
+                    <div class="col-6">
+                        {{ form.size }}
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Nome:
+                    </div>
+                    <div class="col-6">
+                        {{ form.sex }}
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Vacinado:
+                    </div>
+                    <div class="col-6">
+                        {{ form.vaccinated }}
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Castrado:
+                    </div>
+                    <div class="col-6">
+                        {{ form.castrated }}
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Vermifugado:
+                    </div>
+                    <div class="col-6">
+                        {{ form.dewormed }}
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        Vulnerável:
+                    </div>
+                    <div class="col-6">
+                        {{ form.vulnerable }}
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-12 py-5">
+                <button class="w-100 btn btn-primary btn-lg" type="submit"> Atualizar dados </button>
+            </div>
+        </div>
+    </div>
+</header>
+</form> 
 {% endif %}
+
+
+
+
 <script>
 $(document).ready(function() {
     $("#id_name").addClass("input-field");
+    $("input").addClass("form-control w-100");
+    $("select").addClass("form-control w-100");
 })
 // jQuery Mask Plugin v1.14.16
 // github.com/igorescobar/jQuery-Mask-Plugin
