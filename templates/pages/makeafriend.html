@@ -18,12 +18,12 @@
             </div>
         </div>
     </div>
-  </div>
+</div>
 
 <header class="default-header-1">
 <div class="container py-5">
     <div class="row justify-content-around text-dark">
-        <div class="col-3 h-100 py-3 white-box">
+        <div class="col-12 col-md-3 mb-3 h-100 py-3 white-box">
         
         <h5 class="m-0"><strong>FILTRAR (opcional):</strong></h5><small>Selecione uma <em>ou</em> mais opções.</small>
         <br>
@@ -67,11 +67,11 @@
         </form>
         </div>
 
-        <div class="col-8">
+        <div class="col-12 col-md-8">
             <div class="row py-5 white-box">
         {% for pet in pets %}
             {% if pet.isAdopted == False %}
-        <div class="col-6 my-3">
+        <div class="col-12 col-md-4 my-3">
             <div class="card h-100 text-dark">
                 <img class="card-img-top" alt="No image" src="{{ request.scheme }}://{{ request.get_host }}/media/{{pet.image}}">
                 <div class="card-body">
