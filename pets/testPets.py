@@ -24,6 +24,7 @@ class InsertionTestCase(TestCase):
         user.save()
         dog.save()
         
+        
         self.assertEqual(user.full_name, 'Joao')
         self.assertEqual(dog.name, "pet name value 1")
         
