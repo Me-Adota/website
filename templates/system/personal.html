@@ -38,18 +38,9 @@
         <hr>
         {{form.error}}
         <br><img src="{{ request.scheme }}://{{ request.get_host }}{{user.photo}}"><br>
-        
         Foto:<br>{{ form.photo }}<br>
         Nome:<br>{{ form.full_name }}<br>
-        Email:<br>{{ user.email }}<br>
         CPF: <br>{{ form.cpf }} <br>
-        Data de nascimento: (YYYY/MM/DD)<br>{{ form.date_of_birth }}<br>
-        Endereço: <br>{{ form.address1 }}<br>
-        Complemento: <br>{{ form.address2 }}<br>
-        País: <br>{{ form.country }}<br>
-        Código postal (CEP): <br>{{ form.zip_code }}<br>
-        Cidade: <br>{{ form.city }}<br>
-        Informações adicionais: <br>{{ form.additional_information }}<br>
         Telefone: <br>{{ form.mobile_phone }}<br>
         <button type="submit"> Salvar </button>
 

@@ -47,17 +47,7 @@ def PersonalProfile(request):
             if(errors['has_errors'] == 0):
                 user.full_name = str(data['full_name'])
                 user.cpf = str(data['cpf'])
-                user.address1 = str(data['address1'])
-                user.address2 = str(data['address2'])
-                if(str(data['date_of_birth']) != ''):
-                    user.date_of_birth = str(data['date_of_birth'])
-                elif(str(data['date_of_birth']) == ''): 
-                    user.date_of_birth = None
-                user.zip_code = str(data['zip_code'])
-                user.city = str(data['city'])
-                user.country = str(data['country'])
                 user.mobile_phone = str(data['mobile_phone'])
-                user.additional_information = str(data['additional_information'])
                 user.save()
                 return redirect('/system/pets/my')
 
@@ -80,26 +70,6 @@ def validate_fields(data, errors):
             errors['has_errors'] = 1
             errors['error'].update({ index : 'CPF não válido por favor verifique novamente, ou deixe o campo em branco'})
             index+=1
-
-    if('zip_code' in data and data['zip_code'] != ''):
-        if(len(data['zip_code']) < 9):
-            errors['has_errors'] = 1
-            errors['error'].update({ index : 'Cep não válido por favor verifique novamente, ou deixe o campo em branco'})
-            index+=1
-
-    if('date_of_birth' in data and data['date_of_birth'] != ''):
-        if(len(data['date_of_birth']) < 10):
-            errors['has_errors'] = 1
-            errors['error'].update({ index : 'Data de nascimento não válido por favor verifique novamente, ou deixe o campo em branco'})
-            index+=1
-        try:
-            verify_date = data['date_of_birth'].split('-')
-            if(int(verify_date[0]) < 1800 or int(verify_date[1]) > 12 or int (verify_date[2]) > 31 ):
-                errors['has_errors'] = 1
-                errors['error'].update({ index : 'Por favor verifique novamente se a data está no formato YYYY-MM-DD Ex: 2004-12-31'})
-                index+=1
-        except:
-            pass
 
     if('mobile_phone' in data and data['mobile_phone'] != ''):
         if(len(data['mobile_phone']) < 15):
