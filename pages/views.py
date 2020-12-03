@@ -22,7 +22,7 @@ def makeafriend(request):
 
     myFilter = PetFilter(request.GET, queryset = pets)
     pets = myFilter.qs.order_by('vulnerable').reverse()
-    paginator = Paginator(pets, 8) # Show 25 contacts per page.
+    paginator = Paginator(pets, 9) # Show 25 contacts per page.
     page_number = request.GET.get('page')
     pets = paginator.get_page(page_number)
     # context{'pet':pet,'myFilter':myFilter}
