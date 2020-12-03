@@ -17,8 +17,7 @@ def All(request):
 def insertPets(request):
     user = User.objects.get(pk=request.user.id)
     user.save()
-
-    error = {}
+    errors = {}
     errors = { 'has_errors' : 0 } 
         
     if(user.cpf == '' or user.full_name == '' or user.mobile_phone == '' or user.zip_code == ''):
@@ -31,7 +30,7 @@ def insertPets(request):
         if form.is_valid(): 
             form.instance.user_id = request.user.id
             form.save() 
-            return redirect('/system/pets/my')
+            # return redirect('/system/pets/my')
     elif(request.method == 'POST' and errors['has_errors'] == 1):
         errors['error'].update({ 0 : 'Complete seu cadastro!'})
     else:
@@ -64,11 +63,6 @@ def editPet(request,id):
     if(pet.user_id != request.user.id):
         errors['has_errors'] = 1
         errors['error'].update({ 0 : 'Esse pet nao te pertence... Ainda.'})
-
-    print("------------------")
-    print(pet.user_id)
-    print(request.user.id)
-    print("------------------")
     
     if request.method == 'POST':
         form = PetForm(request.POST,request.FILES, instance=pet)
