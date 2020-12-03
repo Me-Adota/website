@@ -71,4 +71,11 @@
             </div>
         </div>
     </div>
+    <script>
+        if(document.getElementById("oPrimeiroNomeDoCara") != null){
+            str = document.getElementById('oPrimeiroNomeDoCara').innerHTML;
+            name = str.split(" ")[1];
+            document.getElementById("oPrimeiroNomeDoCara").textContent=" "+name+" ";
+        }
+    </script>
 {% endblock footer %}
