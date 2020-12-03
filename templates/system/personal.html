@@ -23,7 +23,7 @@
 <header class="default-header-1 py-5">
     <div class="container text-dark">
         <div class="row justify-content-center">
-            <div class="col-4 mb-3 white-box py-3 text-center">
+            <div class="col-12 col-md-4 mb-3 white-box py-3 text-center">
                 <h1>Atualizar dados</h1>
                 <h5>Olá, <strong>{{user.full_name}}!</strong></h5>
                 <p>Caso deseje alterar seus dados, basta <br> preencher os campos abaixos
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-4 pb-5 white-box text-center">
+            <div class="col-12 col-md-4 pb-5 white-box text-center">
                 <h3>{{ user.name }} </h3>
                 <!-- CUSTOM ERROR VALIDATOR -->
                 {% if errors.has_errors == 1 %}
@@ -48,7 +48,7 @@
                     {% csrf_token %} 
                     <hr>
                     {{form.error}}
-                    <br><img src="{{ request.scheme }}://{{ request.get_host }}{{user.photo}}"><br>
+                    <br><img  class=" img-fluid " src="{{ request.scheme }}://{{ request.get_host }}{{user.photo}}"><br>
                     Foto:<br>{{ form.photo }}<br>
                     Nome:<br>{{ form.full_name }}<br>
                     CPF: <br>{{ form.cpf }} <br>
