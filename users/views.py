@@ -27,9 +27,10 @@ def PersonalProfile(request):
     errors = { 'has_errors' : 0 } 
 
 
-    # if(user.cpf == '' or user.full_name == '' or user.mobile_phone == '' or user.zip_code == ''):
-    #     errors = { 'has_errors' : 1 } 
-    #     errors['error'].update({ 0 : 'Antes de adicionar um pet para adoção é necessário que você complete o seu cadastro!'})
+    if(user.cpf == '' or user.full_name == '' or user.mobile_phone == '' or user.zip_code == ''):
+        errors = { 'has_errors' : 1 } 
+        errors['error'] = {}
+        errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você complete seu cadastro com telefone, cpf, nome e CEP!'})
 
     if request.method == 'POST':
         print(request.POST)
@@ -49,14 +50,16 @@ def PersonalProfile(request):
                 user.address1 = str(data['address1'])
                 user.address2 = str(data['address2'])
                 if(str(data['date_of_birth']) != ''):
-                    
                     user.date_of_birth = str(data['date_of_birth'])
+                elif(str(data['date_of_birth']) == ''): 
+                    user.date_of_birth = None
                 user.zip_code = str(data['zip_code'])
                 user.city = str(data['city'])
                 user.country = str(data['country'])
                 user.mobile_phone = str(data['mobile_phone'])
                 user.additional_information = str(data['additional_information'])
                 user.save()
+                return redirect('/system/pets/my')
 
         except:
             print(traceback.format_exc())
