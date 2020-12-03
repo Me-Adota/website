@@ -18,29 +18,29 @@ def insertPets(request):
     user = User.objects.get(pk=request.user.id)
     user.save()
     errors = {}
-    errors = { 'has_errors' : 0 } 
-        
-    if(user.cpf == '' or user.full_name == '' or user.mobile_phone == '' ):
-        errors = { 'has_errors' : 1 } 
+    errors = { 'has_errors' : 0 }
+
+    if(user.cpf == '' or user.cpf == None or user.full_name == '' or user.full_name == None or user.mobile_phone == '' or user.mobile_phone == None ):
+        errors = { 'has_errors' : 1 }
         errors['error'] = {}
-        if(user.cpf == ''):
+        if(user.cpf == '' or user.cpf == None):
             errors['error'].update({ 0 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu CPF'})
-        if(user.full_name == ''):
+        if(user.full_name == '' or user.full_name == None ):
             errors['error'].update({ 1 : 'Antes de cadastrar um pet para adoção é necessário que você insira seu nome!'})
-        if(user.mobile_phone == ''):
+        if(user.mobile_phone == ''  or user.mobile_phone == None):
             errors['error'].update({ 2 : 'Antes de cadastrar um pet para adoção é necessário que insira seu Telefone!'})
 
-    if request.method == 'POST' and errors['has_errors'] == 0: 
-        form = PetForm(request.POST, request.FILES) 
-        if form.is_valid(): 
+    if request.method == 'POST' and errors['has_errors'] == 0:
+        form = PetForm(request.POST, request.FILES)
+        if form.is_valid():
             form.instance.user_id = request.user.id
-            form.save() 
+            form.save()
             # return redirect('/system/pets/my')
     elif(request.method == 'POST' and errors['has_errors'] == 1):
         errors['error'].update({ 0 : 'Complete seu cadastro!'})
     else:
-        form = PetForm() 
-    return render(request, 'system/insertpets.html', {'form' : form , 'errors' : errors}) 
+        form = PetForm()
+    return render(request, 'system/insertpets.html', {'form' : form , 'errors' : errors})
 
 #get pets by logged user
 def userPets(request):
@@ -62,13 +62,13 @@ def editPet(request,id):
     form = PetForm(instance=pet)
 
     errors = {}
-    errors = { 'has_errors' : 0 } 
+    errors = { 'has_errors' : 0 }
     errors['error'] = {}
 
     if(pet.user_id != request.user.id):
         errors['has_errors'] = 1
         errors['error'].update({ 0 : 'Esse pet nao te pertence... Ainda.'})
-    
+
     if request.method == 'POST':
         form = PetForm(request.POST,request.FILES, instance=pet)
         form.save()
@@ -104,6 +104,6 @@ def notAdopted(request,id):
     return redirect('/system/pets/my')
 
 
-def success(request): 
-    return HttpResponse('successfully uploaded') 
+def success(request):
+    return HttpResponse('successfully uploaded')
 
