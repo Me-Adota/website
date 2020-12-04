@@ -56,7 +56,7 @@ $ pip install -r requirements.txt
 $ python manage.py makemigrations
 ```
 ```
-$ puthon manage.py migrate
+$ python manage.py migrate
 ```
 
 
