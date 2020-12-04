@@ -13,7 +13,7 @@
 
 ### Recommended requirements for application
 
-You must have <code> Python 3.8</code> and <code> Pip 20.2</code> installed on your machine.
+You must have <code> Python 3.8</code>, <code> Pip 20.2</code> and </code>Postgres 20</code> installed on your machine.
 
 ### Installing and Running
 
@@ -38,13 +38,29 @@ $ virtualenv venv
 $ source venv/bin/activate
 ```
 
-#### 4. The requirements.txt file should list all Python libraries that your machine depend on, and they will be installed using
+#### 4. You must copy the dev.env file to a new file called .env
+
+```
+$ cp dev.env venv
+```
+
+#### 5. The requirements.txt file should list all Python libraries that your machine depend on, and they will be installed using
 
 ```
 $ pip install -r requirements.txt
 ```
 
-#### 5. Run
+#### 6. Make all the migrations
+
+```
+$ python manage.py makemigrations
+```
+```
+$ puthon manage.py migrate
+```
+
+
+#### 7. Run the server:
 
 ```
 $ python manage.py runserver
@@ -53,15 +69,6 @@ $ python manage.py runserver
 
 It should be running on: http://127.0.0.1:8000
 
-#### 5. Login in django Adminnistration Area
-
-visit your admin page throught: http://localhost:8000/admin/
-
-```
-login: admin
-email: admin@gmail.com
-password: admin123 
-``` 
 
 #### License
 
